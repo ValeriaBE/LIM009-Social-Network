@@ -1,0 +1,82 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto:100i,400');
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    font-family: 'Roboto', sans-serif;
+}
+.container {
+    width: 100%;
+    text-align: center;
+} 
+.top-image img{
+    display: flex;
+    width: 100%;
+}
+.inputs{
+    border-radius: 23px;
+    border-style: solid;
+    border-color: #e6e6e6;
+    background-color: #fff;
+    font-size: 20px;
+    margin: 10px;
+    display: flex;
+    padding: 10px;
+}
+.inputs::placeholder{
+    font-size: 12px;
+    color: rgb(192, 192, 192);
+}
+.bienvenida h1{
+    display: inline-flex;
+    color: 	#F9CD03;
+    font-style: italic;
+    font-size: -webkit-xxx-large;
+}
+.bienvenida img {
+    display: inline-flex;
+    width:6%;
+}
+.bienvenida{
+    margin:10px;
+}
+.login{
+    border-radius: 20px;
+    background-color: #D1D6F3;
+    font-size: 15px;
+    color: #7C83C8;
+    width: 70%;
+    padding: 5px;
+}
+form{
+    display: inline-block;
+    text-align: center;
+    margin-bottom:30px;
+}
+.text-color{
+    color: rgb(190, 190, 190);
+}
+.text p a{
+    color:#F9CD03;
+}
+.other-login{
+    margin: 10px;
+}
+
+/* @media (min-width: 372px) {
+
+}
+
+
+@media (min-width: 420px) {
+  
+}
+
+
+@media (min-width: 762px) {
+    
+
+} */
+@media (min-width :1000px){
+    
+}
