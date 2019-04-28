@@ -1,44 +1,23 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <meta name="google-signin-client_id" content="815925731144-vth0u81p0u7eko83cc5jdnpq39digs3m.apps.googleusercontent.com">
-  <link rel="stylesheet" href="css/style.css">
-  <title>Document</title>
+  <title>Wenergy</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-  <div id='container' class="container">
-    <figure class="top-image">
-      <img src="css/img/renew.jpg" alt="">
-    </figure>
-    <section class="bienvenida">
-      <h1>Wenergy</h1>
-    </section>
-    <form id="add-profile">
-        <input type="email" name="correo" id="email" class="inputs" placeholder="Email">
-        <input type="password" name="contraseña" id="password" class="inputs" placeholder="Password">
-        <button id="acceder" class="login">Log in</button>
-    </form>
-    <div>
-      <p class="text-color other-login">O bien ingresa con...</p>
-      <div class="fb-login-button" data-width="" data-size="large" data-button-type="continue_with" data-auto-logout-link="false" data-use-continue-as="false"></div>
-        <div class="g-signin2" data-onsuccess="onSignIn" id='SignIn'></div>
-    </div>
-    <div class="text">
-      <p class="text-color other-login">¿No tienes una cuenta?<a href="#" id="registrate"> Registrate</a></p>
-    </div>
+  <main id="main" class="container">
+  </main>
+  <div id="content" class="container">
   </div>
-  <h2 id="bigOne"></h2>
-  <div id="fb-root"></div>
-  <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.2&appId=638669766580610&autoLogAppEvents=1"></script>
-    <script src="https://apis.google.com/js/platform.js" async defer></script>
   <script src="https://www.gstatic.com/firebasejs/5.10.0/firebase-app.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/5.10.0/firebase-firestore.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/5.10.0/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/5.10.0/firebase-functions.js"></script>
   <script type="module" src="main.js"></script>
+
 </body>
 
 </html>
