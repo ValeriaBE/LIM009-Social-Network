@@ -29,7 +29,7 @@
 }
 .bienvenida h1{
     display: inline-flex;
-    color: 	#F9CD03;
+    color: 	#99D445;
     font-style: italic;
     font-size: -webkit-xxx-large;
 }
@@ -42,27 +42,40 @@
 }
 .login{
     border-radius: 20px;
-    background-color: #D1D6F3;
+    background-color:#F6DB7B;
     font-size: 15px;
-    color: #7C83C8;
+    color: #E89A2D;
     width: 70%;
     padding: 5px;
+    border:none;
 }
 form{
     display: inline-block;
     text-align: center;
-    margin-bottom:30px;
+    width: min-content;
 }
 .text-color{
     color: rgb(190, 190, 190);
 }
 .text p a{
-    color:#F9CD03;
+    color:#2F58CC;
 }
 .other-login{
     margin: 10px;
 }
-
+.login-buttons{
+    border:none;
+    background-color: white;
+    width:20%;
+}
+.login-buttons img{
+    width: 100%;
+}
+.login-options{
+    margin: 10%;
+    display: block;
+    width: fit-content;
+}
 /* @media (min-width: 372px) {
 
 }
