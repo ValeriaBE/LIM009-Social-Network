@@ -3,13 +3,11 @@ import { cerrarSesion } from './Content.js';
 const signOut = () => firebase.auth().signOut();
 
 export const funcRegister = (emailSignIn, passwordSignIn) => {
-  firebase.auth().createUserWithEmailAndPassword(emailSignIn, passwordSignIn).then((result)=>{
-    console.log(result);
-  }
-  )};
+  return firebase.auth().createUserWithEmailAndPassword(emailSignIn, passwordSignIn)
+};
 
 export const funcLogin = (emailLogIn, passwordLogIn) => {
-  firebase.auth().signInWithEmailAndPassword(emailLogIn, passwordLogIn)
+  return firebase.auth().signInWithEmailAndPassword(emailLogIn, passwordLogIn)
 };
 
 
