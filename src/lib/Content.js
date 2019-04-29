@@ -1,18 +1,35 @@
-import { funcFacebook, funcGoogle, funcRegister,activeUser,funcLogin, showContent} from './index.js'
+import {
+  loginFacebook,
+  loginGoogle,
+  registerUser,
+  activeUser,
+  loginUser,
+  exit
+} from './index.js'
 
-export const cerrarSesion = () => {
-  const string = `
-    <p id='welcome'>Bienvenidos</p>
-    <button id="buttonLogOut">Cerrar sesión</button>`;
-  const div = document.createElement('div')
-  div.innerHTML = string;
-  const content = document.getElementById('content')
-  content.appendChild(div);
+export const showActUser = (user) => {
+  const content = document.getElementById('content');
+  const userCheck = user;
+  if (user.emailVerified) {
+    let string = `
+		<p>Bienvenido!${userCheck.displayName}</p>
+		<figure><img src="${userCheck.photoURL}" alt="FOTOLOCA"></figure>
+    <p> Email: ${userCheck.email}<p>
+    <button id="exit">Cerrar sesión</button>
+    `;
+    content.innerHTML = string;
+
+    const buttonLogOut = document.getElementById('exit');
+    buttonLogOut.addEventListener('click', () => {
+      exit();
+    });
+  }
 }
 
-const content = document.getElementById('content');
+
 export const screen1 = () => {
-const loginPage = `  
+  const content = document.getElementById('content');
+  const loginPage = `  
 <figure class="top-image">
   <img src="img/p.jpg" alt="">
 </figure>
@@ -34,13 +51,13 @@ const loginPage = `
     <p class="text-color other-login">¿No tienes una cuenta?<a href="#" id="registrate"> Registrate</a></p>
   </div>
 </div>`;
-content.innerHTML = loginPage;
+  content.innerHTML = loginPage;
 
 
-const registerScreen = () => {
-  const login = document.getElementById('login')
-  login.innerHTML = '';
-  const register =
+  const registerScreen = () => {
+    const login = document.getElementById('login')
+    login.innerHTML = '';
+    const register =
       `<form id="add-profile">
         <input type="text" name="name" id="name-signup" class="inputs" placeholder="Nombre">
         <input type="email" name="correo" id="email-signup" class="inputs" placeholder="Email">
@@ -50,49 +67,50 @@ const registerScreen = () => {
           <button id="firstScreen" class="home-btn"><img class="home" src="img/h.svg"></button>
         </div>
       </form> `;
-  const div = document.createElement('div')
-  div.innerHTML = register;
-  login.appendChild(div);
-};
+    const div = document.createElement('div')
+    div.innerHTML = register;
+    login.appendChild(div);
+  };
 
-const registerView = () => {
-  const buttonRegisterEmail = document.getElementById('send');
-  const emailSignIn = document.getElementById('email-signup');
-  const passwordSignIn = document.getElementById('password-signup');
+  const registerView = () => {
+    const buttonRegisterEmail = document.getElementById('send');
+    const emailSignIn = document.getElementById('email-signup');
+    const passwordSignIn = document.getElementById('password-signup');
 
-  buttonRegisterEmail.addEventListener('click', (event) => {
-    event.preventDefault();
-    funcRegister(emailSignIn.value, passwordSignIn.value);
+    buttonRegisterEmail.addEventListener('click', (event) => {
+      event.preventDefault();
+      registerUser(emailSignIn.value, passwordSignIn.value);
+    });
+  }
+
+
+  const registerBtn = document.querySelector('[id="registrate"]');
+  registerBtn.addEventListener('click', e => {
+    e.preventDefault();
+    registerScreen();
+    registerView();
+
+
   });
-}
 
+  const buttonLogInEmail = document.getElementById('login-btn');
+  const emailLogInEmail = document.getElementById('email-login');
+  const passwordLogInEmail = document.getElementById('password-login');
+  buttonLogInEmail.addEventListener('click', (event) => {
+    event.preventDefault();
+    loginUser(emailLogInEmail.value, passwordLogInEmail.value);
+  });
+  activeUser();
 
-const registerBtn = document.querySelector('[id="registrate"]');
-registerBtn.addEventListener('click', e => {
-  e.preventDefault();
-  registerScreen();
-  registerView();
+  const facebookLogin = document.querySelector('[id="fb"]');
+  facebookLogin.addEventListener('click', e => {
+    e.preventDefault();
+    loginFacebook();
+  })
 
-});
-
-const buttonLogInEmail = document.getElementById('login-btn');
-const emailLogInEmail = document.getElementById('email-login');
-const passwordLogInEmail = document.getElementById('password-login');
-buttonLogInEmail.addEventListener('click', (event) => {
-  event.preventDefault();
-  funcLogin(emailLogInEmail.value, passwordLogInEmail.value);
-});
-activeUser();
-
-const facebookLogin = document.querySelector('[id="fb"]');
-facebookLogin.addEventListener('click', e => {
-  e.preventDefault();
-  funcFacebook();
-})
-
-const googleLogin = document.querySelector('[id="google"]');
-googleLogin.addEventListener('click', e=>{
-  e.preventDefault();
-  funcGoogle();
-});
+  const googleLogin = document.querySelector('[id="google"]');
+  googleLogin.addEventListener('click', e => {
+    e.preventDefault();
+    loginGoogle();
+  });
 };
