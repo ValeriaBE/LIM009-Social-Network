@@ -1,6 +1,4 @@
-
-import { registerView } from '../main.js'
-import { funcFacebook, funcGoogle } from './index.js'
+import { funcFacebook, funcGoogle, funcRegister,activeUser,funcLogin, showContent} from './index.js'
 
 export const cerrarSesion = () => {
   const string = `
@@ -12,7 +10,7 @@ export const cerrarSesion = () => {
   content.appendChild(div);
 }
 
-const main = document.getElementById('main');
+const content = document.getElementById('content');
 export const screen1 = () => {
 const loginPage = `  
 <figure class="top-image">
@@ -36,7 +34,7 @@ const loginPage = `
     <p class="text-color other-login">¿No tienes una cuenta?<a href="#" id="registrate"> Registrate</a></p>
   </div>
 </div>`;
-main.innerHTML = loginPage;
+content.innerHTML = loginPage;
 
 
 const registerScreen = () => {
@@ -47,19 +45,44 @@ const registerScreen = () => {
         <input type="text" name="name" id="name-signup" class="inputs" placeholder="Nombre">
         <input type="email" name="correo" id="email-signup" class="inputs" placeholder="Email">
         <input type="password" name="contraseña" id="password-signup" class="inputs" placeholder="Password">
-        <button id="send" class="login">Sign up</button>
+        <div id="signup-btns">
+          <button id="send" class="login">Sign up</button>
+          <button id="firstScreen" class="home-btn"><img class="home" src="img/h.svg"></button>
+        </div>
       </form> `;
   const div = document.createElement('div')
   div.innerHTML = register;
   login.appendChild(div);
 };
 
+const registerView = () => {
+  const buttonRegisterEmail = document.getElementById('send');
+  const emailSignIn = document.getElementById('email-signup');
+  const passwordSignIn = document.getElementById('password-signup');
+
+  buttonRegisterEmail.addEventListener('click', (event) => {
+    event.preventDefault();
+    funcRegister(emailSignIn.value, passwordSignIn.value);
+  });
+}
+
+
 const registerBtn = document.querySelector('[id="registrate"]');
 registerBtn.addEventListener('click', e => {
   e.preventDefault();
   registerScreen();
   registerView();
+
 });
+
+const buttonLogInEmail = document.getElementById('login-btn');
+const emailLogInEmail = document.getElementById('email-login');
+const passwordLogInEmail = document.getElementById('password-login');
+buttonLogInEmail.addEventListener('click', (event) => {
+  event.preventDefault();
+  funcLogin(emailLogInEmail.value, passwordLogInEmail.value);
+});
+activeUser();
 
 const facebookLogin = document.querySelector('[id="fb"]');
 facebookLogin.addEventListener('click', e => {

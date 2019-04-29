@@ -76,6 +76,12 @@ form{
     display: block;
     width: fit-content;
 }
+.home{
+    width:inherit;
+}
+.home-btn{
+    width:40%;
+}
 /* @media (min-width: 372px) {
 
 }

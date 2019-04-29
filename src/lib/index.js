@@ -1,11 +1,12 @@
-
 import { cerrarSesion } from './Content.js';
 
 const signOut = () => firebase.auth().signOut();
 
 export const funcRegister = (emailSignIn, passwordSignIn) => {
-  firebase.auth().createUserWithEmailAndPassword(emailSignIn, passwordSignIn)
-};
+  firebase.auth().createUserWithEmailAndPassword(emailSignIn, passwordSignIn).then((result)=>{
+    console.log(result);
+  }
+  )};
 
 export const funcLogin = (emailLogIn, passwordLogIn) => {
   firebase.auth().signInWithEmailAndPassword(emailLogIn, passwordLogIn)
@@ -30,6 +31,7 @@ export const showContent = user => {
   const buttonLogOut = document.getElementById('buttonLogOut');
   buttonLogOut.addEventListener('click', signOut);
 };
+
 
 export const funcGoogle = () => {
   const provider = new firebase.auth.GoogleAuthProvider();
