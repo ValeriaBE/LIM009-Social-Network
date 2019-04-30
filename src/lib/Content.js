@@ -8,7 +8,7 @@ import {
 } from './index.js'
 
 export const showActUser = (user) => {
-  const content = document.getElementById('content');
+  const content = document.getElementById('root');
   const userCheck = user;
   if (user.emailVerified) {
     let string = `
@@ -26,9 +26,9 @@ export const showActUser = (user) => {
   }
 }
 
-
 export const screen1 = () => {
-  const content = document.getElementById('content');
+
+  const content = document.getElementById('root');
   const loginPage = `  
 <figure class="top-image">
   <img src="img/p.jpg" alt="">
@@ -89,8 +89,6 @@ export const screen1 = () => {
     e.preventDefault();
     registerScreen();
     registerView();
-
-
   });
 
   const buttonLogInEmail = document.getElementById('login-btn');
