@@ -5,24 +5,25 @@ import {
 } from './controller-firebase.js'
 
 import {
-  registerInOnSubmit, exitUser
+  registerInOnSubmit,
+  exitUser
 } from '../view-controller.js'
 
 export const showActUser = (user) => {
   const content = document.getElementById('root');
   const userCheck = user;
-    let string = `
+  let string = `
 		<p>Bienvenido!${userCheck.displayName}</p>
 		<figure><img src="${userCheck.photoURL}" alt="FOTOLOCA"></figure>
     <p> Email: ${userCheck.email}<p>
-    <button id="exit">Cerrar sesión</button>
+    <a href="#/" id="exit">Cerrar sesión</a>
     `;
-    content.innerHTML = string;
+  content.innerHTML = string;
 
-    const buttonLogOut = document.getElementById('exit');
-    buttonLogOut.addEventListener('click', () => {
-      exitUser();
-    });
+  const buttonLogOut = document.getElementById('exit');
+  buttonLogOut.addEventListener('click', () => {
+    exitUser();
+  });
 }
 
 export const screen1 = () => {
@@ -39,7 +40,7 @@ export const screen1 = () => {
   <form id="login-user">
     <input type="email" name="correo" id="email-login" class="inputs" placeholder="Email">
     <input type="password" name="contraseña" id="password-login" class="inputs" placeholder="Password">
-    <button id="login-btn" class="login">Log in</button>
+    <a href="#/Profile" id="login-btn" class="login">Log in</a>
     <div class="login-options">
       <p class='text-color other-login'>O bien ingresa con...</p>
       <button id="fb" class="login-buttons"><img src='img/fb.svg'></img></button>
@@ -47,7 +48,7 @@ export const screen1 = () => {
     </div>
   </form>
   <div class="text">
-    <p class="text-color other-login">¿No tienes una cuenta?<a href="#" id="registrate"> Registrate</a></p>
+    <p class="text-color other-login">¿No tienes una cuenta? <a href="#/Register" id="registrate">Registrate</a></p>
   </div>
 </div>`;
   content.innerHTML = loginPage;
@@ -62,8 +63,7 @@ export const screen1 = () => {
         <input type="email" name="correo" id="email-signup" class="inputs" placeholder="Email">
         <input type="password" name="contraseña" id="password-signup" class="inputs" placeholder="Password">
         <div id="signup-btns">
-          <button id="send" class="login">Sign up</button>
-          <button id="firstScreen" class="home-btn"><img class="home" src="img/h.svg"></button>
+          <a href="#/" id="send" class="login">Sign up</a>
         </div>
       </form> `;
     const div = document.createElement('div')
@@ -79,7 +79,6 @@ export const screen1 = () => {
       registerInOnSubmit();
     });
   }
-
 
   const registerBtn = document.querySelector('[id="registrate"]');
   registerBtn.addEventListener('click', e => {
@@ -107,4 +106,5 @@ export const screen1 = () => {
     e.preventDefault();
     loginGoogle();
   });
+
 };
