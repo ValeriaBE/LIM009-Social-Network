@@ -1,16 +1,16 @@
 import {
   loginFacebook,
   loginGoogle,
-  registerUser,
-  activeUser,
   loginUser,
-  exit
-} from './index.js'
+} from './controller-firebase.js'
+
+import {
+  registerInOnSubmit, exitUser
+} from '../view-controller.js'
 
 export const showActUser = (user) => {
   const content = document.getElementById('root');
   const userCheck = user;
-  if (user.emailVerified) {
     let string = `
 		<p>Bienvenido!${userCheck.displayName}</p>
 		<figure><img src="${userCheck.photoURL}" alt="FOTOLOCA"></figure>
@@ -21,9 +21,8 @@ export const showActUser = (user) => {
 
     const buttonLogOut = document.getElementById('exit');
     buttonLogOut.addEventListener('click', () => {
-      exit();
+      exitUser();
     });
-  }
 }
 
 export const screen1 = () => {
@@ -74,12 +73,10 @@ export const screen1 = () => {
 
   const registerView = () => {
     const buttonRegisterEmail = document.getElementById('send');
-    const emailSignIn = document.getElementById('email-signup');
-    const passwordSignIn = document.getElementById('password-signup');
 
     buttonRegisterEmail.addEventListener('click', (event) => {
       event.preventDefault();
-      registerUser(emailSignIn.value, passwordSignIn.value);
+      registerInOnSubmit();
     });
   }
 
@@ -98,7 +95,6 @@ export const screen1 = () => {
     event.preventDefault();
     loginUser(emailLogInEmail.value, passwordLogInEmail.value);
   });
-  activeUser();
 
   const facebookLogin = document.querySelector('[id="fb"]');
   facebookLogin.addEventListener('click', e => {
