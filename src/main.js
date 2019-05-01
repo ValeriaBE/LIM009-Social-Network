@@ -2,6 +2,8 @@
 import { screen1} from './lib/Content.js';
 // import {activeUser} from './lib/controller-firebase.js'
 import { showUser } from './view-controller.js';
+
+// import { init } from './routes-controller.js';
 // Initialize Firebase
 window.addEventListener('load', ()=>{
     var config = {
@@ -15,6 +17,6 @@ window.addEventListener('load', ()=>{
     firebase.initializeApp(config);
     screen1();
     showUser();
+    // init();
 });
-
 

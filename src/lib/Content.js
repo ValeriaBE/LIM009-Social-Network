@@ -88,6 +88,7 @@ export const screen1 = () => {
     registerView();
   });
 
+
   const buttonLogInEmail = document.getElementById('login-btn');
   const emailLogInEmail = document.getElementById('email-login');
   const passwordLogInEmail = document.getElementById('password-login');
