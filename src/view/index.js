@@ -1,11 +1,14 @@
-import {
-    Login,
-    Register,
-    Profile
-} from '../view'
+// import {
+//     Login,
+//     Register,
+//     Profile,
+//     diferente
+    
+// } from '../view'
 
-export const components = {
-    login : Login,
-    register: Register,
-    profile: Profile
-}
+// export const components = {
+//     login : Login,
+//     register: Register,
+//     profile: Profile,
+//     diferente: diferente
+// }

@@ -1,18 +1,39 @@
-// import components from './view/index.js';
+import {screen1} from './view/login.js';
+import {registerScreen} from './view/register.js';
+import {showActUser} from './view/profile.js';
+import{diferente}from './view/error.js'
 
-// const viewTmp = (routers) => {
-//   const router = routers.substr(3, routers.length - 3)
-//   const root = document.getElementById('content');
-//   root.innerHTML = '';
-//   switch (router) {
-//         case '':
-//         case '#':
-//         case '#/':
-//             { return root.appendChild(components.Login()); }
+// const changeTmp = (hash) => {
+//     if (hash === '#/' || hash === '' || hash === '#') {
+//       return viewTmp('#/home');
+//     }
 //   }
-// }
-
-// export const init = () => {
-//     viewTmp(window.location.hash);
-//     window.addEventListener('hashchange', () => viewTmp(window.location.hash));
-// };
+  
+  const viewTmp = (routers) => {
+    const router = routers.substr(2, routers.length - 2)
+    const root = document.getElementById('root');
+    root.innerHTML = '';
+    switch (router) {
+      case 'home':
+          root.innerHTML = '';        
+          root.appendChild(screen1());  
+        break;
+      case 'register':
+        root.appendChild(registerScreen());
+        break;
+      case 'profile':
+        root.appendChild(showActUser());
+        break;
+      case 'diferente':
+        root.appendChild(diferente());
+        break;
+      default:
+        root.appendChild(Login());
+        break;
+    }
+  }
+  
+//   export const initRouter = () => {
+//     window.addEventListener('load', changeTmp(window.location.hash))
+//     if (("onhashchange" in window)) window.onhashchange = () => changeTmp(window.location.hash)
+//   }

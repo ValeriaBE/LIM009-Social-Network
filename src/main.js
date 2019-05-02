@@ -1,10 +1,11 @@
 //Este es el punto de entrada de tu aplicacion
-import { screen1} from './lib/Content.js';
+// import { screen1} from './view/login.js';
 // import {activeUser} from './lib/controller-firebase.js'
 import { showUser } from './view-controller.js';
 
-// import { init } from './routes-controller.js';
+import { initRouter } from './routes-controller.js';
 // Initialize Firebase
+
 window.addEventListener('load', ()=>{
     var config = {
         apiKey: "AIzaSyDPcLn-Y_IDzZB_cNjVFPMiZ3LP_AbLKGc",
@@ -15,8 +16,10 @@ window.addEventListener('load', ()=>{
         messagingSenderId: "815925731144"
     };
     firebase.initializeApp(config);
-    screen1();
     showUser();
-    // init();
+    initRouter();
 });
 
+// const init = () => {
+//     window.addEventListener('hashchange',()=> console.log(window.location.hash))
+// }
