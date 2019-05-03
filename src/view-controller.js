@@ -20,7 +20,10 @@ export const exitUser = () =>{
 export const loginInOnSubmit = () => {
     const email = document.querySelector('[id="email-login"]').value;
     const password = document.querySelector('[id="password-login"]').value;
-    loginUser(email, password);
+    loginUser(email, password)
+    .catch(()=>{
+        alert( 'Usuario invalido');
+    });
 }
 
 export const showUser = ()=>{
