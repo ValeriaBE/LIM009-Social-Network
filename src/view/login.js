@@ -17,11 +17,11 @@ export const screen1 = () => {
   <form id="login-user">
     <input type="email" name="correo" id="email-login" class="inputs" placeholder="Email">
     <input type="password" name="contraseña" id="password-login" class="inputs" placeholder="Password">
-    <a href="#/" id="login-btn" class="login">Log in</a>
+    <a id="login-btn" class="login">Log in</a>
     <div class="login-options">
       <p class='text-color other-login'>O bien ingresa con...</p>
-      <button id="fb" class="login-buttons"><img src='img/fb.svg'></img></button>
-      <button id="google" class="login-buttons"><img src ='img/google.svg'></img></button>
+      <a id="fb" class="login-buttons"><img src ='img/fb.svg'></img></a>
+      <a id="google" class="login-buttons"><img src ='img/google.svg'></img></a>
     </div>
   </form>
   <div class="text">
@@ -36,14 +36,12 @@ divElemt.innerHTML = loginPage;
     });
   
     const facebookLogin = divElemt.querySelector("#fb");
-    facebookLogin.addEventListener('click', e => {
-      e.preventDefault();
+    facebookLogin.addEventListener('click', () => {
       loginFacebook();
     })
   
     const googleLogin = divElemt.querySelector("#google");
-    googleLogin.addEventListener('click', e => {
-      e.preventDefault();
+    googleLogin.addEventListener('click', () => {
       loginGoogle();
     })
 

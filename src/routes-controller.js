@@ -1,7 +1,8 @@
 import {screen1} from './view/login.js';
 import {registerScreen} from './view/register.js';
 import {showActUser} from './view/profile.js';
-import{diferente}from './view/error.js'
+import { getUser } from './controller/controller-firebase.js';
+
 
 const changeTmp = (hash) => {
     if (hash === '#/' || hash === '' || hash === '#') {
@@ -25,10 +26,7 @@ const changeTmp = (hash) => {
         root.appendChild(registerScreen());
         break;
       case 'profile':
-        root.appendChild(showActUser());
-        break;
-      case 'diferente':
-        root.appendChild(diferente());
+        root.appendChild(showActUser(getUser()));
         break;
       default:
         root.appendChild(Login());

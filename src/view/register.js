@@ -12,14 +12,13 @@ export const registerScreen = () =>{
         <input type="email" name="correo" id="email-signup" class="inputs" placeholder="Email">
         <input type="password" name="contraseña" id="password-signup" class="inputs" placeholder="Password">
         <div id="signup-btns">
-          <a href="#/" id="send" class="login">Sign up</a>
+          <a id="send" class="login">Sign up</a>
         </div>
       </form> `;
       divContainer.innerHTML = register;
 
   const buttonRegisterEmail = divContainer.querySelector('#send');
-  buttonRegisterEmail.addEventListener('click', (event) => {
-    event.preventDefault();
+  buttonRegisterEmail.addEventListener('click', () => {
     registerInOnSubmit();
   });
   return divContainer;

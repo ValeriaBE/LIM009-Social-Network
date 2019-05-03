@@ -1,8 +1,7 @@
 import {
     registerUser, checkEmail, activeUser, exit, loginUser
 } from './controller/controller-firebase.js'
-import { screen1 } from './view/login.js';
-import { showActUser } from './view/profile.js';
+
 
 export const registerInOnSubmit = () => {
     const email = document.querySelector('[id="email-signup"]').value;
@@ -14,10 +13,6 @@ export const registerInOnSubmit = () => {
     .then(() => exit())
 }
 
-export const showUser = ()=>{
-    activeUser(showActUser, screen1)
-}
-
 export const exitUser = () =>{
     return exit()
 }
@@ -26,4 +21,12 @@ export const loginInOnSubmit = () => {
     const email = document.querySelector('[id="email-login"]').value;
     const password = document.querySelector('[id="password-login"]').value;
     loginUser(email, password);
+}
+
+export const showUser = ()=>{
+    activeUser(changeRoute)
+}
+
+export const changeRoute = (route) => {
+    location.hash = route;
 }

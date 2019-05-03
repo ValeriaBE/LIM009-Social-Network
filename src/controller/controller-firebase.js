@@ -11,17 +11,19 @@ export const loginUser = (emailLogIn, passwordLogIn) => {
   return firebase.auth().signInWithEmailAndPassword(emailLogIn, passwordLogIn)
 };
 
-
-export const activeUser = (fnshowActUser, fnpantalla) => {
+export const activeUser = (changeRoute) => {
   return firebase.auth().onAuthStateChanged((user)=>{
+    console.log(user);
     if(user){
-      fnshowActUser(user);
+      changeRoute('#/profile');
     }else{
-      fnpantalla();
+      changeRoute('#/home');
 }});
 };
 
-
+export const getUser = () => {
+  return firebase.auth().currentUser;
+}
 export const exit = () => {
   return firebase.auth().signOut()
 };
