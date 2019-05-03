@@ -3,10 +3,9 @@ loginFacebook,
 loginGoogle,
 }from '../controller/controller-firebase.js'
 import{loginInOnSubmit}from '../view-controller.js'
-import{registerScreen} from './register.js'
 
 export const screen1 = () => {
-  const content = document.getElementById('root');
+  const divElemt = document.createElement('div');
   const loginPage = `  
 <figure class="top-image">
   <img src="img/p.jpg" alt="">
@@ -26,34 +25,28 @@ export const screen1 = () => {
     </div>
   </form>
   <div class="text">
-    <p class="text-color other-login">¿No tienes una cuenta? <a href="#/Register" id="registrate">Registrate</a></p>
+    <p class="text-color other-login">¿No tienes una cuenta? <a href="#/register" id="registrate">Registrate</a></p>
   </div>
 </div>`;
-  content.innerHTML = loginPage;
-
-    const registerBtn = document.getElementById('registrate');
-    registerBtn.addEventListener('click', e => {
-      e.preventDefault();
-      registerScreen();
-    });
+divElemt.innerHTML = loginPage;
   
-  
-    const buttonLogInEmail = document.getElementById("login-btn");
-    buttonLogInEmail.addEventListener('click', (event) => {
-      event.preventDefault();
+    const buttonLogInEmail = divElemt.querySelector("#login-btn");
+    buttonLogInEmail.addEventListener('click', () => {
       loginInOnSubmit();
     });
   
-    const facebookLogin = document.getElementById("fb");
+    const facebookLogin = divElemt.querySelector("#fb");
     facebookLogin.addEventListener('click', e => {
       e.preventDefault();
       loginFacebook();
     })
   
-    const googleLogin = document.getElementById("google");
+    const googleLogin = divElemt.querySelector("#google");
     googleLogin.addEventListener('click', e => {
       e.preventDefault();
       loginGoogle();
     })
+
+return divElemt;
 
 }

@@ -3,8 +3,9 @@ registerInOnSubmit
 } from '../view-controller.js'
 
 export const registerScreen = () =>{
-  const login = document.getElementById('login')
-    login.innerHTML = '';
+
+  const divContainer = document.createElement('div');
+  divContainer.innerHTML='';
     const register =
       `<form id="add-profile">
         <input type="text" name="name" id="name-signup" class="inputs" placeholder="Nombre">
@@ -14,14 +15,12 @@ export const registerScreen = () =>{
           <a href="#/" id="send" class="login">Sign up</a>
         </div>
       </form> `;
-    const div = document.createElement('div')
-    div.innerHTML = register;
-    login.appendChild(div);
+      divContainer.innerHTML = register;
 
-  const buttonRegisterEmail = document.getElementById('send');
+  const buttonRegisterEmail = divContainer.querySelector('#send');
   buttonRegisterEmail.addEventListener('click', (event) => {
     event.preventDefault();
     registerInOnSubmit();
   });
-  return divElemt;
+  return divContainer;
 }
