@@ -8,11 +8,11 @@ export const registerScreen = () =>{
   divContainer.innerHTML='';
     const register =
       `<form id="add-profile">
-        <input type="text" name="name" id="name-signup" class="inputs" placeholder="Nombre">
-        <input type="email" name="correo" id="email-signup" class="inputs" placeholder="Email">
-        <input type="password" name="contraseña" id="password-signup" class="inputs" placeholder="Password">
+        <input type="text" name="name" id="name-signup" placeholder="Nombre">
+        <input type="email" name="correo" id="email-signup" placeholder="Email">
+        <input type="password" name="contraseña" id="password-signup" placeholder="Password">
         <div id="signup-btns">
-          <a id="send" class="login">Sign up</a>
+          <a id="send" >Sign up</a>
         </div>
       </form> `;
       divContainer.innerHTML = register;

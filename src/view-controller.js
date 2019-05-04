@@ -8,6 +8,7 @@ export const registerInOnSubmit = () => {
     const password = document.querySelector('[id="password-signup"]').value;
     registerUser(email, password)
     .then(()=> {
+        alert('Verifica tu correo e ingresa')
         checkEmail();
     })
     .then(() => exit())

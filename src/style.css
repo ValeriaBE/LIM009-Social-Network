@@ -5,82 +5,10 @@
     margin: 0;
     font-family: 'Roboto', sans-serif;
 }
-.container {
-    width: 100%;
-    text-align: center;
-} 
-.top-image img{
+.container{
     display: flex;
-    width: 100%;
-}
-.inputs{
-    border-radius: 23px;
-    border-style: solid;
-    border-color: #e6e6e6;
-    background-color: #fff;
-    font-size: 20px;
-    margin: 10px;
-    display: flex;
-    padding: 10px;
-}
-.inputs::placeholder{
-    font-size: 12px;
-    color: rgb(192, 192, 192);
-}
-.bienvenida h1{
-    display: inline-flex;
-    color: 	#99D445;
-    font-style: italic;
-    font-size: -webkit-xxx-large;
-}
-.bienvenida img {
-    display: inline-flex;
-    width:6%;
-}
-.bienvenida{
-    margin:10px;
-}
-.login{
-    border-radius: 20px;
-    background-color:#99D445;
-    font-size: 15px;
-    color: #5C802A;
-    width: 70%;
-    padding: 5px;
-    border:none;
-}
-form{
-    display: inline-block;
-    text-align: center;
-    width: min-content;
-}
-.text-color{
-    color: rgb(190, 190, 190);
-}
-.text p a{
-    color:#2F58CC;
-}
-.other-login{
-    margin: 10px;
-}
-.login-buttons{
-    border:none;
-    background-color: white;
-    width:20%;
-}
-.login-buttons img{
-    width: 100%;
-}
-.login-options{
-    margin: 10%;
-    display: block;
-    width: fit-content;
-}
-.home{
-    width:inherit;
-}
-.home-btn{
-    width:40%;
+    flex-wrap: nowrap;
+    justify-content: center;
 }
 /* @media (min-width: 372px) {
 
