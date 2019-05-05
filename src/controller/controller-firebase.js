@@ -1,4 +1,3 @@
-
 export const registerUser = (emailSignIn, passwordSignIn) => {
   return firebase.auth().createUserWithEmailAndPassword(emailSignIn, passwordSignIn)
 };
@@ -12,13 +11,13 @@ export const loginUser = (emailLogIn, passwordLogIn) => {
 };
 
 export const activeUser = (changeRoute) => {
-  return firebase.auth().onAuthStateChanged((user)=>{
-    console.log(user);
-    if(user){
+  return firebase.auth().onAuthStateChanged((user) => {
+    if (user) {
       changeRoute('#/profile');
-    }else{
+    } else {
       changeRoute('#/home');
-}});
+    }
+  });
 };
 
 export const getUser = () => {
@@ -30,10 +29,10 @@ export const exit = () => {
 
 export const loginGoogle = () => {
   const provider = new firebase.auth.GoogleAuthProvider();
-  firebase.auth().signInWithPopup(provider)
+  return firebase.auth().signInWithPopup(provider)
 };
 
 export const loginFacebook = () => {
   var provider = new firebase.auth.FacebookAuthProvider();
-  firebase.auth().signInWithPopup(provider)
+  return firebase.auth().signInWithPopup(provider)
 };
