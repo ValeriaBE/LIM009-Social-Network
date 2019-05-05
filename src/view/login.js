@@ -8,28 +8,29 @@ export const screen1 = () => {
   const divElemt = document.createElement('div');
   const loginPage = `  
 <figure>
-  <img src="img/p.jpg" alt="">
+  <img class="main-img" src="img/w.jpg" alt="">
 </figure>
-<div id='login'>
-  <section >
-    <h1>Wenergy</h1>
+<div id='login' class="flex-column">
+  <section class="margin" >
+    <h1 class="name">- Wenergy -</h1>
   </section>
-  <form id="login-user">
-    <input type="email" name="correo" id="email-login" placeholder="Email">
-    <input type="password" name="contraseña" id="password-login"  placeholder="Password">
-    <a id="login-btn" >Log in</a>
-    <div >
-      <p >O bien ingresa con...</p>
-      <a id="fb"><img src ='img/fb.svg'></img></a>
-      <a id="google"><img src ='img/google.svg'></img></a>
+  <form id="login-user" class="margin">
+    <input class="inputs" type="email" name="correo" id="email-login" placeholder="Email">
+    <input class="inputs" type="password" name="contraseña" id="password-login"  placeholder="Password">
+    <a class="buttons" id="login-btn" >Log in</a>
+    <div>
+      <p class="margin text-color">O bien ingresa con...</p>
+      <a id="fb"><img class="social-media-img" src ='img/fb.svg'></img></a>
+      <a id="google"><img class="social-media-img" src ='img/google.svg'></img></a>
     </div>
   </form>
-  <div >
-    <p >¿No tienes una cuenta? <a href="#/register" id="registrate">Registrate</a></p>
+  <div class="margin">
+    <p class="text-color">¿No tienes una cuenta? <a class="register-link" href="#/register" id="registrate">Registrate</a></p>
   </div>
 </div>`;
 divElemt.innerHTML = loginPage;
-  
+divElemt.classList.add('container');
+
     const buttonLogInEmail = divElemt.querySelector("#login-btn");
     buttonLogInEmail.addEventListener('click', () => {
       loginInOnSubmit();

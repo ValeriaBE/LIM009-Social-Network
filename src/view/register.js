@@ -7,15 +7,23 @@ export const registerScreen = () =>{
   const divContainer = document.createElement('div');
   divContainer.innerHTML='';
     const register =
-      `<form id="add-profile">
-        <input type="text" name="name" id="name-signup" placeholder="Nombre">
-        <input type="email" name="correo" id="email-signup" placeholder="Email">
-        <input type="password" name="contraseña" id="password-signup" placeholder="Password">
+      `<figure>
+        <img class="main-img" src="img/w.jpg" alt="">
+        <a href="#/home" class="home-button"><img class="home-img" src="img/home.png" alt=""></a>
+      </figure>
+      <section class="margin" >
+        <h1 class="name">- Registro -</h1>
+      </section>
+      <form class="margin" id="add-profile">
+        <input class="inputs" type="text" name="name" id="name-signup" placeholder="Nombre">
+        <input class="inputs" type="email" name="correo" id="email-signup" placeholder="Email">
+        <input class="inputs" type="password" name="contraseña" id="password-signup" placeholder="Password">
         <div id="signup-btns">
-          <a id="send" >Sign up</a>
+          <a class="buttons" id="send" >Sign up</a>
         </div>
       </form> `;
       divContainer.innerHTML = register;
+      divContainer.classList.add('container');
 
   const buttonRegisterEmail = divContainer.querySelector('#send');
   buttonRegisterEmail.addEventListener('click', () => {

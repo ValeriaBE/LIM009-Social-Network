@@ -3,12 +3,134 @@
 * {
     box-sizing: border-box;
     margin: 0;
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Lato', sans-serif;
+    background-color: #fbfafa;
 }
+
 .container{
+    width: auto;
+    text-align: center;
+}
+
+.text-color{
+    color: #51617A;
+}
+
+.home-button{
+    position: fixed;
+    bottom: 20px;
+    margin-left: -70px;
+    border: none;
+}
+
+.home-img{
+    width: 30%;
+}
+
+.register-link{
+    color: #A5C7FA;
+}
+
+.main-img{
+    width:100%;
+}
+
+.inputs{
+    display: block;
+    margin:auto;
+    margin-bottom: 20px;
+    text-align: center;
+    border: 1px solid #e6e6e6;
+    border-radius: 20px;
+    height: 30px;
+    width: 50%;
+}
+
+.flex-column{
     display: flex;
-    flex-wrap: nowrap;
+    flex-direction: column;
+}
+
+.margin {
+    margin:20px;
+}
+
+.social-media-img{
+    width:7%;
+}
+
+.name{
+    color: #728AAE;
+    font-size: 40px;
+    font-weight: bolder;
+}
+
+.buttons{
+    background-color: #A5C7FA;
+    border-radius: 20px;
+    padding-right: 30px;
+    padding-left: 30px;
+    padding-top: 7px;
+    padding-bottom: 7px;
+    color: #51617A;
+    display: block;
+    width: fit-content;
+    margin: auto;
+    font-size: smaller;
+}
+
+.header-profile{
+    background-color: #7B94BA;
+    height: 50px;
+    display: flex;
     justify-content: center;
+    align-items: center;
+}
+
+.header-items{
+    background-color: #7B94BA;
+    display: inline-block;
+    color:white;
+    font-size: x-large;
+}
+
+.section-user{
+    margin: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.figure-profile{
+    display: inline-block;
+    width: 20%;
+}
+
+.img-user{
+    border-radius: 50%;
+    width: 100%;
+}
+
+.name-user{
+    display: inline-block;
+    margin: 30px;
+    color: #51617A;
+    font-size: small;
+}
+
+.exit{
+    border: none;
+    background-color: #7B94BA;
+    width: fit-content;
+    margin-right: auto;
+}
+
+.position{
+    position: absolute;
+}
+.exit-img{
+    width: 20%;
+    background-color: #7B94BA;
 }
 /* @media (min-width: 372px) {
 
@@ -17,13 +139,15 @@
 
 @media (min-width: 420px) {
   
-}
+}*/
 
 
 @media (min-width: 762px) {
-    
+    .container{
+        display: flex;
+    }
 
-} */
+} 
 @media (min-width :1000px){
     
 }
