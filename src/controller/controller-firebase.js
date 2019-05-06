@@ -11,7 +11,7 @@ export const loginUser = (emailLogIn, passwordLogIn) => {
 };
 
 export const firestore = () =>{
-  return firebase.firestore().doc("Users/usernames");
+  return firebase.firestore();
 }
 
 export const activeUser = (changeRoute) => {
@@ -41,3 +41,12 @@ export const loginFacebook = () => {
   var provider = new firebase.auth.FacebookAuthProvider();
   return firebase.auth().signInWithPopup(provider)
 };
+
+export const unsuscribe = (showProfile) =>{
+  return firebase.auth().onAuthStateChanged((u2) => {
+    if (u2) {
+      showProfile(u2)
+    }
+    unsuscribe()
+  });
+} 

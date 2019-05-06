@@ -1,7 +1,8 @@
 import {screen1} from './view/login.js';
 import {registerScreen} from './view/register.js';
 import {showActUser} from './view/profile.js';
-import { getUser } from './controller/controller-firebase.js';
+import { getUser, unsuscribe } from './controller/controller-firebase.js';
+import { getName } from './view-controller.js';
 
 
 const changeTmp = (hash) => {
@@ -25,9 +26,37 @@ const changeTmp = (hash) => {
       case 'register':
         root.appendChild(registerScreen());
         break;
-      case 'profile':
-        root.appendChild(showActUser(getUser()));
+      case 'profile': {
+        const showProfile = (user) => {
+          getName(user).then((name) => {
+            root.appendChild(showActUser({
+              ...user,
+              name
+            }))
+          });
+        }
+        const u = getUser();
+        if (u) {
+          showProfile(u)
+        } else {
+          unsuscribe(showProfile);
+        }
+        //   unsuscribe((u2) => {
+        //     if (u2) {
+        //       showProfile(u2)
+        //     }
+        //     unsuscribe()
+        //   })
+          
+        // }
+        // firebase.firestore().collection('Users').doc('usernames').get().then((profile) => {
+        //   root.appendChild(showActUser({
+        //     ...user,
+        //     ...profile.data(),
+        //   }));
+        // })
         break;
+      }
       default:
         root.appendChild(Login());
         break;

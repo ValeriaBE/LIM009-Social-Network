@@ -1,9 +1,10 @@
 import{
-    exitUser, deleteUser
+    exitUser, deleteUser, getName
 } from '../view-controller.js'
 import { getUser } from '../controller/controller-firebase.js';
 
 export const showActUser = (user) => {
+    console.log(user);
     const divContainer = document.createElement('div');
     divContainer.innerHTML='';
     const userCheck = user;
@@ -25,7 +26,7 @@ export const showActUser = (user) => {
             <img class="img-user"src="${userCheck.photoURL}" alt="foto">
         </figure>
         <div class="name-user text-color inline-block">
-            <p id="userName">${userCheck.displayName}</p>
+            <p id="userName">${userCheck.displayName || userCheck.name}</p>
             <p>${userCheck.email}<p>
         </div>
     </section>
