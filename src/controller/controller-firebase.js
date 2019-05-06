@@ -2,6 +2,22 @@ export const registerUser = (emailSignIn, passwordSignIn) => {
   return firebase.auth().createUserWithEmailAndPassword(emailSignIn, passwordSignIn)
 };
 
+// export const registerUserinFirestore = (username, email)=>{
+//   firebase.firestore().collection('Users').add({
+//       name: username,
+//       email: email
+//   });
+// }
+
+// export const gettingData = () =>{
+//   firebase.firestore().collection('Users').get().then(snapshot => {
+//       snapshot.docs.forEach(doc => {
+//           renderCafe(doc);
+//       });
+//   });
+  
+// }
+
 export const checkEmail = () => {
   return firebase.auth().currentUser.sendEmailVerification();
 };
@@ -23,6 +39,7 @@ export const activeUser = (changeRoute) => {
 export const getUser = () => {
   return firebase.auth().currentUser;
 }
+
 export const exit = () => {
   return firebase.auth().signOut()
 };

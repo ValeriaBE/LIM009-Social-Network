@@ -4,10 +4,12 @@ import {
 
 
 export const registerInOnSubmit = () => {
+    const nameToSave = document.querySelector('[id="name-signup"]').value;
     const email = document.querySelector('[id="email-signup"]').value;
     const password = document.querySelector('[id="password-signup"]').value;
     registerUser(email, password)
     .then(()=> {
+        // registerUserinFirestore(nameToSave,email)
         alert('Verifica tu correo e ingresa')
         checkEmail();
     })
@@ -33,4 +35,11 @@ export const showUser = ()=>{
 
 export const changeRoute = (route) => {
     location.hash = route;
+}
+
+
+export const deleteUser = (user) => {
+    user.delete().then(() =>{
+       alert('Usuario eliminad@')
+      })
 }
