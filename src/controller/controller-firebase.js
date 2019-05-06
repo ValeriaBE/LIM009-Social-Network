@@ -10,13 +10,17 @@ export const loginUser = (emailLogIn, passwordLogIn) => {
   return firebase.auth().signInWithEmailAndPassword(emailLogIn, passwordLogIn)
 };
 
+export const firestore = () =>{
+  return firebase.firestore().doc("Users/usernames");
+}
+
 export const activeUser = (changeRoute) => {
   return firebase.auth().onAuthStateChanged((user) => {
     if (user) {
       changeRoute('#/profile');
     } else {
       changeRoute('#/home');
-    }
+    } 
   });
 };
 

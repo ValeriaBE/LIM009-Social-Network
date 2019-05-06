@@ -1,5 +1,5 @@
 import{
-registerInOnSubmit
+registerInOnSubmit, saveName,
 } from '../view-controller.js'
 
 export const registerScreen = () =>{
@@ -15,11 +15,11 @@ export const registerScreen = () =>{
         <h1 class="name">- Registro -</h1>
       </section>
       <form class="margin" id="add-profile">
-        <input class="inputs" type="text" name="name" id="name-signup" placeholder="Nombre">
-        <input class="inputs" type="email" name="correo" id="email-signup" placeholder="Email">
-        <input class="inputs" type="password" name="contraseña" id="password-signup" placeholder="Password">
+        <input class="inputs block" type="text" name="name" id="name-signup" placeholder="Nombre">
+        <input class="inputs block" type="email" name="correo" id="email-signup" placeholder="Email">
+        <input class="inputs block" type="password" name="contraseña" id="password-signup" placeholder="Password">
         <div id="signup-btns">
-          <a class="buttons" id="send" >Sign up</a>
+          <a class="buttons block text-color" id="send" >Sign up</a>
         </div>
       </form> `;
       divContainer.innerHTML = register;
@@ -27,6 +27,7 @@ export const registerScreen = () =>{
 
   const buttonRegisterEmail = divContainer.querySelector('#send');
   buttonRegisterEmail.addEventListener('click', () => {
+    saveName();
     registerInOnSubmit();
   });
   return divContainer;

@@ -38,3 +38,25 @@ export const showUser = () => {
 export const changeRoute = (route) => {
     location.hash = route;
 }
+
+export const saveName = () => {
+    const nameToSave = document.querySelector('[id="name-signup"]').value;
+    firestore().set({
+        NameofUser: nameToSave
+    })
+}
+
+export const getName = ()=>{
+    firestore().get()
+    .then((doc)=>{
+        if(doc && doc.exists){
+           console.log(doc.data().NameofUser);
+        }
+    })
+}
+
+export const deleteUser = (user) => {
+    user.delete().then(() =>{
+       alert('Usuario eliminad@')
+      })
+}
