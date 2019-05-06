@@ -32,3 +32,4 @@ export const showActUser = (user) => {
     });
     return divContainer;
   }
+  
