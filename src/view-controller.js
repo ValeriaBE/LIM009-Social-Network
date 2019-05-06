@@ -1,5 +1,5 @@
 import {
-    registerUser, checkEmail, activeUser, exit, loginUser, firestore
+    registerUser, activeUser, exit, loginUser, firestore
 } from './controller/controller-firebase.js'
 
 
@@ -10,7 +10,7 @@ export const registerInOnSubmit = () => {
     .then(()=> {
         saveName();
         alert('Verifica tu correo e ingresa')
-        checkEmail();
+        // checkEmail();
     })
     .then(() => exit())
 }

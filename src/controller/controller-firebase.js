@@ -2,9 +2,9 @@ export const registerUser = (emailSignIn, passwordSignIn) => {
   return firebase.auth().createUserWithEmailAndPassword(emailSignIn, passwordSignIn)
 };
 
-export const checkEmail = () => {
-  return firebase.auth().currentUser.sendEmailVerification();
-};
+// export const checkEmail = () => {
+//   return firebase.auth().currentUser.sendEmailVerification();
+// };
 
 export const loginUser = (emailLogIn, passwordLogIn) => {
   return firebase.auth().signInWithEmailAndPassword(emailLogIn, passwordLogIn)

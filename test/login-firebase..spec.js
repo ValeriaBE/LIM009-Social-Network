@@ -36,11 +36,11 @@ describe('Registrar usuarios', () => {
 	})
 });
 
-describe('Enviar Email de verificacion', () => {
-	it('checkEmail deberia ser una funcion', () => {
-		expect(typeof (checkEmail)).toBe('function')
-	})
-});
+// describe('Enviar Email de verificacion', () => {
+// 	it('checkEmail deberia ser una funcion', () => {
+// 		expect(typeof (checkEmail)).toBe('function')
+// 	})
+// });
 
 describe('Login de Usuarios', () => {
 	it('loginUser deberia ser una funcion', () => {
@@ -56,8 +56,13 @@ describe('Login de Usuarios', () => {
 
 describe('Observador de estado de usuario', () => {
 	it('activeUser deberia ser una funcion', () => {
-		expect(typeof(activeUser)).toBe('function')
+		expect(typeof (activeUser)).toBe('function')
 	});
+	it('deberia hacer cambio de ruta si hay un user activo', () => {
+		activeUser((user) => {
+			expect(user).toEqual('#/profile')
+		})
+	})
 });
 
 describe('Login de Usuarios con Google', () => {
@@ -88,10 +93,11 @@ describe('Obtener usuario getUser', () => {
 	it('Deberia ser una funcion', () => {
 		expect(typeof (getUser)).toBe('function');
 	});
-	// it('Deberia retornar usuario', () => {
-	// 	expect('').toBe('')
-	//   return getUser();
-	// });
+	it('Deberia retornar usuario activo', () => {
+		getUser((user) => {
+			expect(user.isAnonymous).toBe('false')
+		})
+	});
 });
 
 describe('Cerrar sesion de usuario', () => {
