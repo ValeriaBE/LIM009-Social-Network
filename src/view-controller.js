@@ -1,15 +1,14 @@
 import {
-    registerUser, checkEmail, activeUser, exit, loginUser
+    registerUser, checkEmail, activeUser, exit, loginUser, firestore
 } from './controller/controller-firebase.js'
 
 
 export const registerInOnSubmit = () => {
-    const nameToSave = document.querySelector('[id="name-signup"]').value;
     const email = document.querySelector('[id="email-signup"]').value;
     const password = document.querySelector('[id="password-signup"]').value;
     registerUser(email, password)
     .then(()=> {
-        // registerUserinFirestore(nameToSave,email)
+        saveName();
         alert('Verifica tu correo e ingresa')
         checkEmail();
     })
@@ -37,6 +36,21 @@ export const changeRoute = (route) => {
     location.hash = route;
 }
 
+export const saveName = () => {
+    const nameToSave = document.querySelector('[id="name-signup"]').value;
+    firestore().set({
+        NameofUser: nameToSave
+    })
+}
+
+export const getName = ()=>{
+    firestore().get()
+    .then((doc)=>{
+        if(doc && doc.exists){
+           console.log(doc.data().NameofUser);
+        }
+    })
+}
 
 export const deleteUser = (user) => {
     user.delete().then(() =>{

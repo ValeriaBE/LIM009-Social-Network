@@ -3,7 +3,7 @@ loginFacebook,
 loginGoogle,
 getUser,
 }from '../controller/controller-firebase.js'
-import{loginInOnSubmit}from '../view-controller.js'
+import{loginInOnSubmit, getName}from '../view-controller.js'
 
 export const screen1 = () => {
   const divElemt = document.createElement('div');
@@ -35,6 +35,7 @@ divElemt.classList.add('container');
     const buttonLogInEmail = divElemt.querySelector("#login-btn");
     buttonLogInEmail.addEventListener('click', () => {
       loginInOnSubmit();
+      getName();
     });
   
     const facebookLogin = divElemt.querySelector("#fb");

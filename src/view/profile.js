@@ -25,7 +25,7 @@ export const showActUser = (user) => {
             <img class="img-user"src="${userCheck.photoURL}" alt="foto">
         </figure>
         <div class="name-user text-color inline-block">
-            <p>${userCheck.displayName}</p>
+            <p id="userName">${userCheck.displayName}</p>
             <p>${userCheck.email}<p>
         </div>
     </section>

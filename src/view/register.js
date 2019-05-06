@@ -1,5 +1,5 @@
 import{
-registerInOnSubmit,
+registerInOnSubmit, saveName,
 } from '../view-controller.js'
 
 export const registerScreen = () =>{
@@ -27,6 +27,7 @@ export const registerScreen = () =>{
 
   const buttonRegisterEmail = divContainer.querySelector('#send');
   buttonRegisterEmail.addEventListener('click', () => {
+    saveName();
     registerInOnSubmit();
   });
   return divContainer;
