@@ -1,5 +1,9 @@
 import {
-    registerUser, activeUser, exit, loginUser, firestore
+    registerUser,
+    // checkEmail,
+    activeUser,
+    exit,
+    loginUser
 } from './controller/controller-firebase.js'
 
 
