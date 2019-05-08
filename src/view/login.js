@@ -3,7 +3,7 @@ loginFacebook,
 loginGoogle,
 getUser,
 }from '../controller/controller-firebase.js'
-import{loginInOnSubmit, getName}from '../view-controller.js'
+import{loginInOnSubmit, getName, changeRoute}from '../view-controller.js'
 
 export const screen1 = () => {
   const divElemt = document.createElement('div');
@@ -38,12 +38,12 @@ divElemt.classList.add('container');
   
     const facebookLogin = divElemt.querySelector("#fb");
     facebookLogin.addEventListener('click', () => {
-      loginFacebook();
+      loginFacebook().then(()=> changeRoute("#/profile"));
     })
   
     const googleLogin = divElemt.querySelector("#google");
     googleLogin.addEventListener('click', () => {
-      loginGoogle();
+      loginGoogle().then(()=> changeRoute("#/profile"));
     })
 
 return divElemt;

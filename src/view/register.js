@@ -9,7 +9,6 @@ export const registerScreen = () =>{
     const register =
       `<figure>
         <img class="main-img" src="img/u.png" alt="">
-        <a href="#/home" class="home-button"><img class="home-img" src="img/home.png" alt=""></a>
       </figure>
       <section class="margin flex-column flex" >
         <h1 class="name text-color">- Registro -</h1>
@@ -19,6 +18,7 @@ export const registerScreen = () =>{
         <input class="inputs block" type="password" name="contraseña" id="password-signup" placeholder="Password">
         <div id="signup-btns">
           <a class="buttons block text-color color2" id="send" >Sign up</a>
+          <a href="#/home" class="home-button block"><img class="home-img" src="img/home.png" alt=""></a>
         </div>
       </form> 
       </section>`;

@@ -32,7 +32,7 @@ const changeTmp = (hash) => {
           getName(user).then((name) => {
             root.appendChild(showActUser({
               ...user,
-              name
+              name,
             }))
             root.appendChild(postScreen());
           });

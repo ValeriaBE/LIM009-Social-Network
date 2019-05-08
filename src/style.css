@@ -10,6 +10,9 @@
 .text-color{
     color: #00A8B1;
 }
+.back-color{
+    background-color: #00A8B1;
+}
 .color2{
     background-color: #AFE0EA;
 }
@@ -22,10 +25,11 @@
 }
 
 .home-button{
-    position: fixed;
-    bottom: 20px;
-    margin-left: -70px;
     border: none;
+    margin-top: 50px;
+    margin-left: auto;
+    margin-right: auto;
+    width: max-content;
 }
 
 .home-img{
@@ -49,6 +53,11 @@
     border-radius: 20px;
     height: 30px;
     width: 50%;
+}
+
+.menu-button{
+    width:15%;
+    margin:12px;
 }
 
 .flex-column{
@@ -139,7 +148,6 @@
     font-size: smaller;
     text-decoration: none;
     margin: 10px;
-    color:#7B94BA;
     background-color: #f9f9f9;
 }
 /* @media (min-width: 372px) {
@@ -164,6 +172,18 @@
     }
     .main-img{
         width: 100%;
+    }
+    .inputs{
+        width:100%;
+    }
+    .name{
+        font-size:30px;
+    }
+    .social-media-img{
+        width:12%;
+    }
+    .img-user{
+        width:50%;
     }
 } 
 @media (min-width :1000px){

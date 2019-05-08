@@ -10,7 +10,7 @@ export const loginUser = (emailLogIn, passwordLogIn) => {
   return firebase.auth().signInWithEmailAndPassword(emailLogIn, passwordLogIn)
 };
 
-export const firestore = () =>{
+export const db = () =>{
   return firebase.firestore();
 }
 
