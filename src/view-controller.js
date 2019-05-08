@@ -3,7 +3,8 @@ import {
     // checkEmail,
     activeUser,
     exit,
-    loginUser
+    loginUser,
+    firestore
 } from './controller/controller-firebase.js'
 
 
@@ -43,10 +44,19 @@ export const changeRoute = (route) => {
 
 export const getName = (user) => {
     if(user){
-    return firestore().collection('users').doc(user.uid).get()
-        .then((doc) => {
-            return doc.data().name;
-        })
+        if (user.providerData[0].providerId!='password') {
+            return {
+                then: (cb) => {
+                    cb(user.displayName)
+                }
+            }
+        } else {
+            return firestore().collection('users').doc(user.uid).get()
+                .then((doc) => {
+                    return doc.data().name;
+                })
+        
+            }
     }
 }
 

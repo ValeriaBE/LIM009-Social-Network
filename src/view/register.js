@@ -8,20 +8,20 @@ export const registerScreen = () =>{
   divContainer.innerHTML='';
     const register =
       `<figure>
-        <img class="main-img" src="img/w.jpg" alt="">
+        <img class="main-img" src="img/u.png" alt="">
         <a href="#/home" class="home-button"><img class="home-img" src="img/home.png" alt=""></a>
       </figure>
-      <section class="margin" >
-        <h1 class="name">- Registro -</h1>
-      </section>
+      <section class="margin flex-column flex" >
+        <h1 class="name text-color">- Registro -</h1>
       <form class="margin" id="add-profile">
         <input class="inputs block" type="text" name="name" id="name-signup" placeholder="Nombre">
         <input class="inputs block" type="email" name="correo" id="email-signup" placeholder="Email">
         <input class="inputs block" type="password" name="contraseña" id="password-signup" placeholder="Password">
         <div id="signup-btns">
-          <a class="buttons block text-color" id="send" >Sign up</a>
+          <a class="buttons block text-color color2" id="send" >Sign up</a>
         </div>
-      </form> `;
+      </form> 
+      </section>`;
       divContainer.innerHTML = register;
       divContainer.classList.add('container');
 

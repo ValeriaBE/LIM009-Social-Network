@@ -7,13 +7,18 @@
     background-color: #fbfafa;
 }
 
+.text-color{
+    color: #00A8B1;
+}
+.color2{
+    background-color: #AFE0EA;
+}
+.color3{
+    color: #AFE0EA;
+}
 .container{
     width: auto;
     text-align: center;
-}
-
-.text-color{
-    color: #51617A;
 }
 
 .home-button{
@@ -27,12 +32,8 @@
     width: 30%;
 }
 
-.register-link{
-    color: #A5C7FA;
-}
-
 .main-img{
-    width:100%;
+    width:50%;
 }
 .block{
     display: block;
@@ -63,13 +64,11 @@
 }
 
 .name{
-    color: #728AAE;
     font-size: 40px;
     font-weight: bolder;
 }
 
 .buttons{
-    background-color: #A5C7FA;
     border-radius: 20px;
     padding-right: 30px;
     padding-left: 30px;
@@ -87,9 +86,6 @@
 .center{
     justify-content: center;
     align-items: center;
-}
-.blue-color{
-    background-color: #7B94BA;
 }
 
 .inline-block{
@@ -159,8 +155,16 @@
 @media (min-width: 762px) {
     .container{
         display: flex;
+        justify-content: center;
+        align-items: center;
+        height: -webkit-fill-available;
     }
-
+    .container2{
+        display: block;
+    }
+    .main-img{
+        width: 100%;
+    }
 } 
 @media (min-width :1000px){
     

@@ -9,16 +9,16 @@ export const showActUser = (user) => {
     divContainer.innerHTML='';
     const userCheck = user;
     let string = `
-    <header class="header-profile center flex blue-color">
-        <div class="dropdown blue-color">
-            <img class="figure-profile blue-color" src="img/menu.png" alt="">
+    <header class="header-profile center flex text-color">
+        <div class="dropdown text-color">
+            <img class="figure-profile text-color" src="img/menu.png" alt="">
             <div class="dropdown-content position">
             <a class="dropdown-links block" href="#/home" id="exit">Cerrar Sesión</a>
             <a class="dropdown-links block" href="#/home" id="delete">Borrar Perfil</a>
             </div>
         </div>
         <section class="position">
-            <p class="header-items blue-color inline-block">- Wenergy -</p>
+            <p class="header-items text-color inline-block">- Wenergy -</p>
         </section>
     </header>
     <section class="section-user center flex">
@@ -32,7 +32,7 @@ export const showActUser = (user) => {
     </section>
       `;
       divContainer.innerHTML = string;
-      divContainer.classList.add('container');
+      divContainer.classList.add('container2');
   
     const buttonLogOut = divContainer.querySelector('#exit');
     buttonLogOut.addEventListener('click', () => {

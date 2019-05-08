@@ -3,6 +3,7 @@ import {registerScreen} from './view/register.js';
 import {showActUser} from './view/profile.js';
 import { getUser, unsuscribe } from './controller/controller-firebase.js';
 import { getName } from './view-controller.js';
+import {postScreen} from './view/posts.js'
 
 
 const changeTmp = (hash) => {
@@ -33,6 +34,7 @@ const changeTmp = (hash) => {
               ...user,
               name
             }))
+            root.appendChild(postScreen());
           });
         }
         const u = getUser();
@@ -40,15 +42,14 @@ const changeTmp = (hash) => {
           showProfile(u)
         } else {
           unsuscribe(showProfile);
-        }
-        //   unsuscribe((u2) => {
-        //     if (u2) {
-        //       showProfile(u2)
-        //     }
-        //     unsuscribe()
-        //   })
+          // const unsuscribe = firebase.auth().onAuthStateChanged((u2) => {
+          //   if (u2) {
+          //     showProfile(u2)
+          //   }
+          //   unsuscribe()
+          // })
           
-        // }
+        }
         // firebase.firestore().collection('Users').doc('usernames').get().then((profile) => {
         //   root.appendChild(showActUser({
         //     ...user,

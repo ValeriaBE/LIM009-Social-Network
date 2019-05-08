@@ -9,16 +9,14 @@ export const screen1 = () => {
   const divElemt = document.createElement('div');
   const loginPage = `  
 <figure>
-  <img class="main-img" src="img/w.jpg" alt="">
+  <img class="main-img" src="img/u.png" alt="">
 </figure>
 <div id='login' class="flex-column flex">
-  <section class="margin" >
-    <h1 class="name">- Wenergy -</h1>
-  </section>
+    <h1 class="margin name text-color">- Wenergy -</h1>
   <form id="login-user" class="margin">
     <input class="inputs block" type="email" name="correo" id="email-login" placeholder="Email">
     <input class="inputs block" type="password" name="contraseña" id="password-login"  placeholder="Password">
-    <a class="buttons block text-color" id="login-btn" >Log in</a>
+    <a class="buttons block color2 text-color" id="login-btn" >Log in</a>
     <div>
       <p class="margin text-color">O bien ingresa con...</p>
       <a id="fb"><img class="social-media-img" src ='img/fb.svg'></img></a>
@@ -26,7 +24,7 @@ export const screen1 = () => {
     </div>
   </form>
   <div class="margin">
-    <p class="text-color">¿No tienes una cuenta? <a class="register-link" href="#/register" id="registrate">Registrate</a></p>
+    <p class="text-color">¿No tienes una cuenta? <a class="color3" href="#/register" id="registrate">Registrate</a></p>
   </div>
 </div>`;
 divElemt.innerHTML = loginPage;
