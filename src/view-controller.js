@@ -4,9 +4,16 @@ import {
     activeUser,
     exit,
     loginUser,
-    db
+    db,
+    getUser
 } from './controller/controller-firebase.js'
 
+
+export const createUser = (cred) => {
+    return db().collection('users').doc(cred.user.uid).set({
+        name: cred.user.displayName
+    })
+}
 
 export const registerInOnSubmit = () => {
     const nameToSave = document.querySelector('[id="name-signup"]').value;
@@ -19,22 +26,26 @@ export const registerInOnSubmit = () => {
             })
         })
         .then(() => exit())
-        .then(()=> changeRoute("#/home"))
+        .then(() => changeRoute("#/home"))
 }
 
-export const savePostdb = () =>{
-    const textPost = document.querySelector('#text-post').value;
-    const modoPost = document.querySelector('#visualización').value;
+export const savePostdb = () => {
+    let textPost = document.querySelector('#text-post').value;
+    let modoPost = document.querySelector('#visualización').value;
+
     db().collection('posts').add({
-        texto: textPost,
-        modo: modoPost
-    })
-     .then((docRef)=> {
-        console.log("Document written with ID: ", docRef.id);
-     })
-     .catch(function(error) {
-        console.error("Error adding document: ", error);
-     });
+            uid : getUser().uid,
+            texto: textPost,
+            modo: modoPost
+        })
+        .then((docRef) => {
+            console.log("Document written with ID: ", docRef.id);
+            textPost = '';
+            modoPost = '';
+        })
+        .catch(function (error) {
+            console.error("Error adding document: ", error);
+        });
 }
 
 export const exitUser = () => {
@@ -45,7 +56,7 @@ export const loginInOnSubmit = () => {
     const email = document.querySelector('[id="email-login"]').value;
     const password = document.querySelector('[id="password-login"]').value;
     loginUser(email, password)
-    .then(()=> changeRoute("#/profile"))
+        .then(() => changeRoute("#/profile"))
         .catch(() => {
             alert('Usuario invalido');
         });
@@ -60,8 +71,8 @@ export const changeRoute = (route) => {
 }
 
 export const getName = (user) => {
-    if(user){
-        if (user.providerData[0].providerId!='password') {
+    if (user) {
+        if (user.providerData[0].providerId != 'password') {
             return {
                 then: (cb) => {
                     cb(user.displayName)
@@ -72,8 +83,8 @@ export const getName = (user) => {
                 .then((doc) => {
                     return doc.data().name;
                 })
-        
-            }
+
+        }
     }
 }
 

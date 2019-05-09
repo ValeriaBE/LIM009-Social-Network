@@ -1,9 +1,14 @@
-import{
-loginFacebook,
-loginGoogle,
-getUser,
-}from '../controller/controller-firebase.js'
-import{loginInOnSubmit, getName, changeRoute}from '../view-controller.js'
+import {
+  loginFacebook,
+  loginGoogle,
+  getUser,
+} from '../controller/controller-firebase.js'
+import {
+  loginInOnSubmit,
+  getName,
+  changeRoute,
+  createUser
+} from '../view-controller.js'
 
 export const screen1 = () => {
   const divElemt = document.createElement('div');
@@ -27,25 +32,35 @@ export const screen1 = () => {
     <p class="text-color">¿No tienes una cuenta? <a class="color3" href="#/register" id="registrate">Registrate</a></p>
   </div>
 </div>`;
-divElemt.innerHTML = loginPage;
-divElemt.classList.add('container');
+  divElemt.innerHTML = loginPage;
+  divElemt.classList.add('container');
 
-    const buttonLogInEmail = divElemt.querySelector("#login-btn");
-    buttonLogInEmail.addEventListener('click', () => {
-      loginInOnSubmit();
-      getName();
-    });
-  
-    const facebookLogin = divElemt.querySelector("#fb");
-    facebookLogin.addEventListener('click', () => {
-      loginFacebook().then(()=> changeRoute("#/profile"));
-    })
-  
-    const googleLogin = divElemt.querySelector("#google");
-    googleLogin.addEventListener('click', () => {
-      loginGoogle().then(()=> changeRoute("#/profile"));
-    })
+  const buttonLogInEmail = divElemt.querySelector("#login-btn");
+  buttonLogInEmail.addEventListener('click', () => {
+    loginInOnSubmit();
+    getName();
+  });
 
-return divElemt;
+  const facebookLogin = divElemt.querySelector("#fb");
+  facebookLogin.addEventListener('click', () => {
+    loginFacebook().then(createUser.then(() => {
+      changeRoute("#/profile");
+    })
+  })
+
+  const googleLogin = divElemt.querySelector("#google");
+  googleLogin.addEventListener('click', () => {
+    // loginGoogle().then((cred) => {
+    //   createUser(cred)
+    //   changeRoute("#/profile");
+    // })
+    loginGoogle().then(createUser).then(() => {
+      changeRoute("#/profile");
+    })
+  })
+
+
+
+  return divElemt;
 
 }
