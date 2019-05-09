@@ -2,6 +2,7 @@ import{
     exitUser, deleteUser, getName
 } from '../view-controller.js'
 import { getUser } from '../controller/controller-firebase.js';
+import { postScreen } from './posts.js';
 
 export const showActUser = (user) => {
     console.log(user);
@@ -36,7 +37,7 @@ export const showActUser = (user) => {
   
     const buttonLogOut = divContainer.querySelector('#exit');
     buttonLogOut.addEventListener('click', () => {
-      exitUser();
+      exitUser().then(()=> changeRoute("#/home"));
     });
     const buttonLDelete = divContainer.querySelector('#delete');
     buttonLDelete.addEventListener('click', () => {
