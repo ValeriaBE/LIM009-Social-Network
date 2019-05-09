@@ -18,9 +18,9 @@ export const postScreen = () =>{
         divContainer.innerHTML = register;
         divContainer.classList.add('container');
   
-        // const publicar = document.querySelector('#publicar');
-        // publicar.addEventListener('click', ()=>{
-        //     savePostdb();
-        // })
+        const publicar = divContainer.querySelector("#publicar");
+        publicar.addEventListener('click', ()=>{
+            savePostdb();
+        })
     return divContainer;
   }
