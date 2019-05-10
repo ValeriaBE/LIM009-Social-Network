@@ -18,7 +18,7 @@ export const registerScreen = () =>{
         <input class="inputs block" type="password" name="contraseña" id="password-signup" placeholder="Password">
         <div id="signup-btns">
           <a class="buttons block text-color color2" id="send" >Sign up</a>
-          <a href="#/home" class="home-button block"><img class="home-img" src="img/home.png" alt=""></a>
+          <a href="#/home" class="home-button border-none block"><img class="home-img" src="img/home.png" alt=""></a>
         </div>
       </form> 
       </section>`;
