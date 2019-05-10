@@ -2,7 +2,7 @@ import {screen1} from './view/login.js';
 import {registerScreen} from './view/register.js';
 import {showActUser} from './view/profile.js';
 import { getUser, unsuscribe } from './controller/controller-firebase.js';
-import { getName } from './view-controller.js';
+import { getName, viewPostdb } from './view-controller.js';
 import {postScreen} from './view/posts.js'
 
 
@@ -28,14 +28,21 @@ const changeTmp = (hash) => {
         root.appendChild(registerScreen());
         break;
       case 'profile': {
+        root.innerHTML="";
         const showProfile = (user) => {
           getName(user).then((name) => {
-            root.appendChild(showActUser({
-              ...user,
-              name,
-            }))
-            root.appendChild(postScreen());
+            viewPostdb((posts)=>{
+              root.innerHTML="";
+              root.appendChild(showActUser({
+                ...user,
+                name,
+              }, posts))
+            }) 
           });
+          // viewPostdb((posts) =>{
+          //   root.innerHTML="";
+          //   root.appendChild(postScreen(posts));
+          // })
         }
         const u = getUser();
         if (u) {

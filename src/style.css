@@ -12,6 +12,9 @@
 .text-color{
     color: #00A8B1;
 }
+.name-color{
+    color: #545454;
+}
 .back-color{
     background-color: #00A8B1;
 }
@@ -20,6 +23,9 @@
 }
 .color3{
     color: #AFE0EA;
+}
+.container-post{
+    background-color: #efefef75;
 }
 .container{
     width: auto;
@@ -153,7 +159,7 @@
     background-color: #f9f9f9;
 }
 .post-border{
-    border: 1px solid #AFE0EA;
+    border: 1px solid #d2d5d6;
 }
 .post{
     padding: 9px;
@@ -169,14 +175,31 @@
     border: none;
     width: 8%;
     height: 30px;
-    padding: 0;
+    padding: 0;    
+    margin-right: auto;
+}
+.background-color-img{
+    background-color: #14a3ab96;
 }
 .img-button{
     width: 100%;
     height: 30px;
     margin: 0;
+    border-radius: 10%;
 }
-
+.select{
+    margin-left: auto;
+    margin-bottom: 10px;
+    color: white;
+    border: none;
+    font-size: 13px;
+}
+.compartir{
+    border-radius: 50px;
+    border: none;
+    color: white;
+    font-size: 13px;
+}
 /* @media (min-width: 372px) {
 
 }

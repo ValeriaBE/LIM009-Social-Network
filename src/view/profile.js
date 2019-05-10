@@ -1,10 +1,10 @@
 import{
-    exitUser, deleteUser, getName
+    exitUser, deleteUser, getName, changeRoute
 } from '../view-controller.js'
 import { getUser } from '../controller/controller-firebase.js';
 import { postScreen } from './posts.js';
 
-export const showActUser = (user) => {
+export const showActUser = (user, posts) => {
     console.log(user);
     const divContainer = document.createElement('div');
     divContainer.innerHTML='';
@@ -26,7 +26,7 @@ export const showActUser = (user) => {
         <figure class="figure-profile inline-block">
             <img class="img-user"src="${userCheck.photoURL}" alt="foto">
         </figure>
-        <div class="name-user text-color inline-block">
+        <div class="name-user name-color inline-block">
             <p id="userName">${userCheck.displayName || userCheck.name}</p>
             <p>${userCheck.email}<p>
         </div>
@@ -34,7 +34,8 @@ export const showActUser = (user) => {
       `;
       divContainer.innerHTML = string;
       divContainer.classList.add('container2');
-  
+      divContainer.appendChild(postScreen(posts));
+    
     const buttonLogOut = divContainer.querySelector('#exit');
     buttonLogOut.addEventListener('click', () => {
       exitUser().then(()=> changeRoute("#/home"));

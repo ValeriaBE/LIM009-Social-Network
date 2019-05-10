@@ -29,12 +29,14 @@ export const registerInOnSubmit = () => {
         .then(() => changeRoute("#/home"))
 }
 
-export const savePostdb = () => {
+export const savePostdb = (user) => {
     let textPost = document.querySelector('#text-post').value;
     let modoPost = document.querySelector('#visualización').value;
-
-    db().collection('posts').add({
+    console.log(user);
+    getName(user).then((name)=>{
+        db().collection('posts').add({
             uid : getUser().uid,
+            name: name,
             texto: textPost,
             modo: modoPost
         })
@@ -46,7 +48,21 @@ export const savePostdb = () => {
         .catch(function (error) {
             console.error("Error adding document: ", error);
         });
+    })
 }
+
+export const viewPostdb = (callback) => {
+    db().collection("posts").onSnapshot((querySnapshot) => {
+        const data = [];
+        querySnapshot.forEach((doc) => {
+            data.push({
+                id: doc.id,
+            ...doc.data()});
+            console.log(data);
+        });
+        callback(data);
+    });
+ }
 
 export const exitUser = () => {
     return exit()
