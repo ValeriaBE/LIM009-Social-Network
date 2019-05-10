@@ -6,6 +6,9 @@
     font-family: 'Lato', sans-serif;
     background-color: #fbfafa;
 }
+.border-none{
+    border: none;
+}
 .auto{
     margin: auto;
 }
@@ -33,7 +36,6 @@
 }
 
 .home-button{
-    border: none;
     margin-top: 50px;
     margin-left: auto;
     margin-right: auto;
@@ -133,7 +135,6 @@
 }
 
 .dropdown {
-    border: none;
     width: fit-content;
     margin-right: auto;
   }
@@ -172,7 +173,6 @@
     margin-bottom: 20px;
 }
 .upload-img{
-    border: none;
     width: 8%;
     height: 30px;
     padding: 0;    
@@ -191,15 +191,46 @@
     margin-left: auto;
     margin-bottom: 10px;
     color: white;
-    border: none;
     font-size: 13px;
 }
 .compartir{
     border-radius: 50px;
-    border: none;
     color: white;
     font-size: 13px;
 }
+.published-post{
+    display: flex;
+    flex-direction: column;
+    width: 70%;
+    margin: auto;
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+.color-post{
+    background-color: #14a3ab00;
+}
+
+.publicado-name{
+    font-size: small;
+    padding: 10px;
+    margin-right: auto;
+}
+.delete-btn{
+    width: 30px;
+    height: 30px;
+}
+.delete-img{
+    width: 100%;
+}
+.first-div-style{
+    color: white;
+    background-color: #14a3ab96;
+    padding: 10px;
+}
+.padding-ten{
+    padding: 10px;
+}
+
 /* @media (min-width: 372px) {
 
 }
