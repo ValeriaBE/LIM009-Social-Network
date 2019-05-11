@@ -1,5 +1,5 @@
 import { savePostdb } from "../view-controller.js";
-import { getUser, deletePost } from "../controller/controller-firebase.js";
+import { getUser } from "../controller/controller-firebase.js";
 
 
 export const postScreen = (posts) =>{
@@ -15,14 +15,14 @@ export const postScreen = (posts) =>{
         </select>
         <input class="name-color post-input post-border" id="text-post" type="text" placeholder="¿Que quieres compartir?">
         <div class="container-post flex center">
-            <button class="upload-img border-none inline-block"><img class="img-button background-color-img" src="img/add.png" alt=""></button>
-            <button class="border-none inline-block background-color-img compartir" id="publicar">Compartir</button>
+            <button class="upload-img delete-btn border-none inline-block"><img class="delete-img" src="img/add-image.png" alt=""></button>
+            <button class="border-none inline-block delete-btn" id="publicar"><img class="delete-img container-post" src="img/paper-plane.png" alt=""></button>
         </div>
     </div>
     <section id="post-container">
    </section>`;
    divContainer.innerHTML = register;
-   divContainer.classList.add('container');
+   divContainer.classList.add('container2');
    const section = divContainer.querySelector('#post-container');
    posts.forEach(post => {
        section.appendChild(viewPostScreen(post))
@@ -40,21 +40,21 @@ export const postScreen = (posts) =>{
     const templatesPosts = `
     <div class="flex first-div-style">
       <p class="color-post publicado-name">Publicado por ${objPosts.name}</p>
-      <button class="color-post delete-btn border-none padding-ten" id="deleteBtn"><img class="color-post delete-img" src="img/delete.png" alt=""/></button>
+      <button class="exit-btn color-post border-none" id="deleteBtn"><img class="color-post delete-img" src="img/delete.png" alt=""/></button>
     </div>
     <div>
       <p class="padding-ten">${objPosts.texto}</p>
     </div>
-    <div class="padding-ten container-post">
-      <button class="border-none container-post delete-btn"><img class="color-post delete-img" src="img/like.png" alt=""/></button>
+    <div class="padding-ten container-post flex">
+      <button class="border-none container-post margin-right delete-btn"><img class="color-post delete-img" src="img/like.png" alt=""/></button>
       <button class="border-none container-post delete-btn"><img class="color-post delete-img" src="img/edit.png" alt=""/></button>
     </div>`;
   console.log(objPosts);
     divContainer.innerHTML += templatesPosts;
-    divContainer.classList.add('container', 'published-post', 'post-border');
+    divContainer.classList.add('container2', 'published-post', 'post-border');
     const deleteBtn = divContainer.querySelector('#deleteBtn');
     deleteBtn.addEventListener('click',()=>{
-      deletePost(getUser());
+      // deletePost();
     })
     return divContainer;
  }

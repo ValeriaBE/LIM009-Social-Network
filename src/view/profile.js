@@ -22,7 +22,7 @@ export const showActUser = (user, posts) => {
             <p class="header-items back-color text-color inline-block">- Wenergy -</p>
         </div>
     </header>
-    <section class="section-user center flex">
+    <section class="margin center flex">
         <figure class="figure-profile inline-block">
             <img class="img-user"src="${userCheck.photoURL}" alt="foto">
         </figure>
