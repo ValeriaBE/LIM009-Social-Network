@@ -47,9 +47,6 @@ export const unsuscribe = (showProfile) =>{
     if (u2) {
       showProfile(u2)
     }
-    unsuscribe()
+    // unsuscribe();
   });
-}
-export const deletePost = (user) =>{
-  return firebase.firestore().collection("posts").doc(user.uid).delete();
 }

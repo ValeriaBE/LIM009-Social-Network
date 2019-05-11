@@ -37,7 +37,7 @@ const changeTmp = (hash) => {
                 ...user,
                 name,
               }, posts))
-            }) 
+            })
           });
           // viewPostdb((posts) =>{
           //   root.innerHTML="";
