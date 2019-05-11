@@ -50,13 +50,6 @@ export const getName = (user) => {
 		}
 	}
 }
-
-export const deleteUser = (user) => {
-	user.delete().then(() => {
-		alert('Usuario eliminad@')
-	})
-}
-
 export const exitUser = () => {
 	return exit()
 }
@@ -77,7 +70,11 @@ export const createUser = (cred) => {
 	})
 }
 
-
+export const deleteUser = (user) => {
+    user.delete().then(() => {
+        alert('Usuario eliminad@')
+    })
+}
 export const savePostdb = (user) => {
 	let textPost = document.querySelector('#text-post').value;
 	let modoPost = document.querySelector('#visualización').value;
