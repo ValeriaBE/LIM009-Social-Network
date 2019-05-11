@@ -118,14 +118,13 @@ export const deletePost = (postId) => {
 	return db().collection("posts").doc(postId).delete();
 }
 
-export const updatePost = (postId, postText) => {
+export const updatePost = (postId, postText, modePost) => {
 	 document.querySelector('#text-post').value = postText;
-	//  document.querySelector('#visualización').value = modoPost;
+	 document.querySelector('#visualización').value = modePost;
 	 let boton = document.querySelector('#publicar');
 
-	let collectionPosts = db().collection("posts").doc(postId);
-	
-	collectionPosts.update({
+	return db().collection("posts").doc(postId).update({
 		texto: postText,
+		modo: modoPost,
 	})
 }

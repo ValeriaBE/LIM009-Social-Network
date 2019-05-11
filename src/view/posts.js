@@ -54,7 +54,7 @@ export const viewPostScreen = (objPosts) => {
     </div>
     <div class="padding-ten container-post">
       <button class="border-none container-post delete-btn" id="likeBtn" data-post-id="${objPosts.id}"><img class="color-post delete-img" src="img/like.png" alt=""/></button>
-      <button class="border-none container-post delete-btn" id="editBtn" data-post-id="${objPosts.id}, ${objPosts.texto}"><img class="color-post delete-img" src="img/edit.png" alt=""/></button>
+      <button class="border-none container-post delete-btn" id="editBtn" data-post-id="${objPosts.id}" data-post-text="${objPosts.texto}"><img class="color-post delete-img" src="img/edit.png" alt=""/></button>
     </div>`;
   // console.log(objPosts);getUser()
   divContainer.innerHTML += templatesPosts;
@@ -71,8 +71,9 @@ export const viewPostScreen = (objPosts) => {
   editBtn.addEventListener('click', (evt) => {
     let btnTarget = evt.target;
     let idTarget = btnTarget.getAttribute('data-post-id');
-    console.log(idTarget);
-    updatePost(idTarget);
+    let textTarget = btnTarget.getAttribute('data-post-text');
+    // console.log(idTarget,textTarget);
+    updatePost(idTarget, textTarget);
   })
   return divContainer;
 }
