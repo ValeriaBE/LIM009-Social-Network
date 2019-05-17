@@ -1,5 +1,5 @@
 import{
-    exitUser, deleteUser, getName, changeRoute
+  exitUser, deleteUser, getName, changeRoute
 } from '../view-controller.js'
 import { getUser } from '../controller/controller-firebase.js';
 import { createPostScreen } from './posts.js';

@@ -47,7 +47,7 @@ export const viewPostScreen = (objPosts, user) => {
   const templatesPosts = `
     <div class="flex first-div-style">
       <p class="color-post publicado-name">Publicado por ${objPosts.name}</p>
-      <button class="color-post exit-btn border-none padding-ten" id="deleteBtn" data-post-id="${objPosts.id}"><img class="color-post delete-img" src="img/delete.png" alt=""/></button>
+      <button class="color-post exit-btn border-none" padding-ten id="deleteBtn" data-post-id="${objPosts.id}"><img class="color-post delete-img" src="img/delete.png" alt=""/></button>
     </div>
     <div>
       <p class="padding-ten">${objPosts.texto}</p>
