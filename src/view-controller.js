@@ -70,9 +70,9 @@ export const createUser = (cred) => {
 }
 
 export const deleteUser = (user) => {
-    user.delete().then(() => {
-        alert('Usuario eliminad@')
-    })
+	user.delete().then(() => {
+		alert('Usuario eliminad@')
+	})
 }
 export const savePostdb = (user) => {
 	let textPost = document.querySelector('#text-post').value;
@@ -83,7 +83,8 @@ export const savePostdb = (user) => {
 				uid: getUser().uid,
 				name: name,
 				texto: textPost,
-				modo: modoPost
+				state: modoPost,
+				likes: 0,
 			})
 			.then((docRef) => {
 				console.log("Document written with ID: ", docRef.id);
@@ -115,11 +116,11 @@ export const deletePost = (postId) => {
 }
 
 export const updatePost = (postId, postText, modePost) => {
-	 document.querySelector('#text-post').value = postText;
-	 document.querySelector('#visualización').value = modePost;
-	 let boton = document.querySelector('#publicar');
+	document.querySelector('#text-post').value = postText;
+	document.querySelector('#visualización').value = modePost;
+	let boton = document.querySelector('#publicar');
 
-	 boton.addEventListener('click', () => {
+	boton.addEventListener('click', () => {
 		let postText = document.querySelector('#text-post').value;
 		let modoPost = document.querySelector('#visualización').value;
 
@@ -131,5 +132,14 @@ export const updatePost = (postId, postText, modePost) => {
 			document.querySelector('#text-post').value = '';
 			document.querySelector('#visualización').value = '';
 		})
-	 })
+	})
 }
+
+export const likePost = (postId, counter) => {
+	
+	return db().collection('posts').doc(postId).update({
+		likes: counter,
+	}).then(() => {
+		console.log('Le diste like++')
+	})
+};

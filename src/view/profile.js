@@ -5,7 +5,7 @@ import { getUser } from '../controller/controller-firebase.js';
 import { createPostScreen } from './posts.js';
 
 export const showActUser = (user, posts) => {
-    console.log(user);
+    //console.log(user);
     const divContainer = document.createElement('div');
     divContainer.innerHTML='';
     const userCheck = user;

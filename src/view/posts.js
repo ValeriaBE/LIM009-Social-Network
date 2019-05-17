@@ -1,7 +1,8 @@
 import {
   savePostdb,
   deletePost,
-  updatePost
+  updatePost,
+  likePost
 } from "../view-controller.js";
 import {
   getUser,
@@ -41,42 +42,56 @@ export const createPostScreen = (posts) => {
   return divContainer;
 }
 
-export const viewPostScreen = (objPosts, user) => {
+export const viewPostScreen = (objPosts) => {
   const divContainer = document.createElement('div');
   divContainer.innerHTML = '';
   const templatesPosts = `
     <div class="flex first-div-style">
       <p class="color-post publicado-name">Publicado por ${objPosts.name}</p>
-      <button class="color-post exit-btn border-none" padding-ten id="deleteBtn" data-post-id="${objPosts.id}"><img class="color-post delete-img" src="img/delete.png" alt=""/></button>
+      <button class="color-post exit-btn border-none" padding-ten id="deleteBtn"><img class="color-post delete-img" src="img/delete.png" alt="" data-post-id="${objPosts.id}"/></button>
     </div>
     <div>
       <p class="padding-ten">${objPosts.texto}</p>
     </div>
     <div class="padding-ten container-post">
-      <button class="border-none container-post delete-btn" id="likeBtn" data-post-id="${objPosts.id}"><img class="color-post delete-img" src="img/like.png" alt=""/></button>
+      <span id="counterLike">${objPosts.likes}</span>
+      <button class="border-none container-post delete-btn" id="likeBtn"><img class="color-post delete-img" src="img/like.png" alt="" data-post-id="${objPosts.id}"/></button>
       <button class="border-none container-post delete-btn" id="editBtn"><img class="color-post delete-img" src="img/edit.png" alt="pencil-editar" data-post-id="${objPosts.id}" data-post-text="${objPosts.texto}"/></button>
     </div>`;
-  // console.log(objPosts);getUser()
+  console.log(objPosts, getUser());
   divContainer.innerHTML += templatesPosts;
   divContainer.classList.add('container2', 'published-post', 'post-border');
   const deleteBtn = divContainer.querySelector('#deleteBtn');
   deleteBtn.addEventListener('click', (evt) => {
-    // if (objPosts.uid === getUser().id) {
-      console.log(getUser().id);
+    const user = getUser();
+    if (objPosts.uid === user.uid) {
       let btnTarget = evt.target;
       let idTarget = btnTarget.getAttribute('data-post-id');
-      console.log(idTarget);
-      deletePost(idTarget);
-    // }
-  })
+    deletePost(idTarget);
+  }
+})
 
-  const editBtn = divContainer.querySelector('#editBtn');
-  editBtn.addEventListener('click', (evt) => {
+const editBtn = divContainer.querySelector('#editBtn');
+editBtn.addEventListener('click', (evt) => {
+  const user = getUser();
+  if (objPosts.uid === user.uid) {
     let btnTarget = evt.target;
     let idTarget = btnTarget.getAttribute('data-post-id');
     let textTarget = btnTarget.getAttribute('data-post-text');
     console.log(idTarget, textTarget);
     updatePost(idTarget, textTarget);
+  }
+})
+
+const likeBtn = divContainer.querySelector('#likeBtn');
+likeBtn.addEventListener('click', (evt) => {
+    let btnTarget = evt.target;
+    let idTarget = btnTarget.getAttribute('data-post-id');
+    let counterLike = parseInt(divContainer.querySelector('#counterLike').innerHTML);
+    let counter = counterLike+1;
+    console.log(counter);
+    divContainer.querySelector('#counterLike').innerHTML = counter;
+    likePost(idTarget, counter);
   })
-  return divContainer;
+return divContainer;
 }
