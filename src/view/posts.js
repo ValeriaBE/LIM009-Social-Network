@@ -9,7 +9,7 @@ import {
 } from "../controller/controller-firebase.js";
 
 
-export const postScreen = (posts) => {
+export const createPostScreen = (posts) => {
 
   const divContainer = document.createElement('div');
   divContainer.innerHTML = '';
@@ -41,7 +41,7 @@ export const postScreen = (posts) => {
   return divContainer;
 }
 
-export const viewPostScreen = (objPosts) => {
+export const viewPostScreen = (objPosts, user) => {
   const divContainer = document.createElement('div');
   divContainer.innerHTML = '';
   const templatesPosts = `
@@ -53,23 +53,21 @@ export const viewPostScreen = (objPosts) => {
       <p class="padding-ten">${objPosts.texto}</p>
     </div>
     <div class="padding-ten container-post">
-<<<<<<< HEAD
       <button class="border-none container-post delete-btn" id="likeBtn" data-post-id="${objPosts.id}"><img class="color-post delete-img" src="img/like.png" alt=""/></button>
-      <button class="border-none container-post delete-btn" id="editBtn" data-post-id="${objPosts.id}" data-post-text="${objPosts.texto}"><img class="color-post delete-img" src="img/edit.png" alt=""/></button>
-=======
-      <button class="border-none container-post margin-right delete-btn" id="likeBtn" data-post-id="${objPosts.id}"><img class="color-post delete-img" src="img/like.png" alt=""/></button>
-      <button class="border-none container-post delete-btn" id="editBtn" data-post-id="${objPosts.id}, ${objPosts.texto}"><img class="color-post delete-img" src="img/edit.png" alt=""/></button>
->>>>>>> d2f8835a6c1afe605034a183ac1d731a778a5ab6
+      <button class="border-none container-post delete-btn" id="editBtn"><img class="color-post delete-img" src="img/edit.png" alt="pencil-editar" data-post-id="${objPosts.id}" data-post-text="${objPosts.texto}"/></button>
     </div>`;
   // console.log(objPosts);getUser()
   divContainer.innerHTML += templatesPosts;
   divContainer.classList.add('container2', 'published-post', 'post-border');
   const deleteBtn = divContainer.querySelector('#deleteBtn');
   deleteBtn.addEventListener('click', (evt) => {
-    let btnTarget = evt.target;
-    let idTarget = btnTarget.getAttribute('data-post-id');
-    console.log(idTarget);
-    deletePost(idTarget);
+    // if (objPosts.uid === getUser().id) {
+      console.log(getUser().id);
+      let btnTarget = evt.target;
+      let idTarget = btnTarget.getAttribute('data-post-id');
+      console.log(idTarget);
+      deletePost(idTarget);
+    // }
   })
 
   const editBtn = divContainer.querySelector('#editBtn');
@@ -77,7 +75,7 @@ export const viewPostScreen = (objPosts) => {
     let btnTarget = evt.target;
     let idTarget = btnTarget.getAttribute('data-post-id');
     let textTarget = btnTarget.getAttribute('data-post-text');
-    // console.log(idTarget,textTarget);
+    console.log(idTarget, textTarget);
     updatePost(idTarget, textTarget);
   })
   return divContainer;

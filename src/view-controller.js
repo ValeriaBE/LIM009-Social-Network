@@ -46,7 +46,6 @@ export const getName = (user) => {
 				.then((doc) => {
 					return doc.data().name;
 				})
-
 		}
 	}
 }
@@ -120,8 +119,17 @@ export const updatePost = (postId, postText, modePost) => {
 	 document.querySelector('#visualización').value = modePost;
 	 let boton = document.querySelector('#publicar');
 
-	return db().collection("posts").doc(postId).update({
-		texto: postText,
-		modo: modoPost,
-	})
+	 boton.addEventListener('click', () => {
+		let postText = document.querySelector('#text-post').value;
+		let modoPost = document.querySelector('#visualización').value;
+
+		return db().collection("posts").doc(postId).update({
+			texto: postText,
+			modo: modoPost,
+		}).then((docRef) => {
+			console.log('Document successfully update!')
+			document.querySelector('#text-post').value = '';
+			document.querySelector('#visualización').value = '';
+		})
+	 })
 }
