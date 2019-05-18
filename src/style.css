@@ -75,7 +75,7 @@
 }
 
 .margin {
-    margin-top:20px;
+    margin:20px;
 }
 
 .social-media-img{
@@ -124,7 +124,8 @@
 
 .img-user{
     border-radius: 50%;
-    width: 80%;
+    width: 30%;
+    margin-left: 20%;
 }
 
 .name-user{
