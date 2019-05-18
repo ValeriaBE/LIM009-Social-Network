@@ -2,10 +2,12 @@ import {
   savePostdb,
   deletePost,
   updatePost,
-  likePost
-} from "../view-controller.js";
+  likePost,
+  //fileUserPost
+  } from "../view-controller.js";
 import {
   getUser,
+  storage,
   // db
 } from "../controller/controller-firebase.js";
 
@@ -23,7 +25,7 @@ export const createPostScreen = (posts) => {
         </select>
         <input class="name-color post-input post-border" id="text-post" type="text" placeholder="¿Que quieres compartir?">
         <div class="container-post flex center">
-            <button class="upload-img delete-btn border-none inline-block"><img class="delete-img" src="img/add-image.png" alt=""></button>
+            <input type="file" id="user-file" value="upload" class="upload-img delete-btn border-none inline-block">
             <button class="border-none inline-block delete-btn" id="publicar"><img class="delete-img container-post" src="img/paper-plane.png" alt=""></button>
         </div>
     </div>
@@ -35,10 +37,17 @@ export const createPostScreen = (posts) => {
   posts.forEach(post => {
     section.appendChild(viewPostScreen(post))
   });
+  const btnFile = divContainer.querySelector('#user-file');
+  btnFile.addEventListener('change', (e) => {
+    let file = e.target.files[0];
+ console.log(file);
+    //fileUserPost(file);
+    storage().ref('images/' + file.name).put(file);
+  });
   const btnPublicar = divContainer.querySelector("#publicar");
   btnPublicar.addEventListener('click', () => {
     savePostdb(getUser());
-  })
+  });
   return divContainer;
 }
 
@@ -58,7 +67,7 @@ export const viewPostScreen = (objPosts) => {
       <button class="border-none container-post delete-btn" id="likeBtn"><img class="color-post delete-img" src="img/like.png" alt="" data-post-id="${objPosts.id}"/></button>
       <button class="border-none container-post delete-btn" id="editBtn"><img class="color-post delete-img" src="img/edit.png" alt="pencil-editar" data-post-id="${objPosts.id}" data-post-text="${objPosts.texto}"/></button>
     </div>`;
-  console.log(objPosts, getUser());
+  //console.log(objPosts, getUser());
   divContainer.innerHTML += templatesPosts;
   divContainer.classList.add('container2', 'published-post', 'post-border');
   const deleteBtn = divContainer.querySelector('#deleteBtn');

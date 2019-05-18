@@ -10,10 +10,6 @@ export const loginUser = (emailLogIn, passwordLogIn) => {
   return firebase.auth().signInWithEmailAndPassword(emailLogIn, passwordLogIn)
 };
 
-export const db = () =>{
-  return firebase.firestore();
-}
-
 export const activeUser = (changeRoute) => {
   return firebase.auth().onAuthStateChanged((user) => {
     if (user) {
@@ -27,10 +23,6 @@ export const activeUser = (changeRoute) => {
 export const getUser = () => {
   return firebase.auth().currentUser;
 }
-
-export const exit = () => {
-  return firebase.auth().signOut()
-};
 
 export const loginGoogle = () => {
   const provider = new firebase.auth.GoogleAuthProvider();
@@ -49,5 +41,17 @@ export const unsuscribe = (showProfile) =>{
     }
     // unsuscribe();
   });
+}
+
+export const exit = () => {
+  return firebase.auth().signOut()
+};
+
+export const db = () =>{
+  return firebase.firestore();
+}
+
+export const storage = () => {
+  return firebase.storage();
 }
 
