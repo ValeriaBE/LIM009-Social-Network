@@ -9,6 +9,9 @@
 .border-none{
     border: none;
 }
+.background-none{
+    background: none;
+}
 .auto{
     margin: auto;
 }
@@ -124,8 +127,7 @@
 
 .img-user{
     border-radius: 50%;
-    width: 30%;
-    margin-left: 20%;
+    width: 100%;
 }
 
 .name-user{
@@ -274,11 +276,6 @@
     .big-profile{
         flex-direction: row;
         align-items: start;
-    }
-    .info-box{
-        margin: 0;
-        width: 30%;
-        
     }
 } 
 @media (min-width :1000px){

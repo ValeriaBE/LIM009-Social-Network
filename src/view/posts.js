@@ -28,9 +28,8 @@ export const createPostScreen = (posts) => {
             <input type="file" id="user-file" value="upload" class="upload-img delete-btn border-none inline-block">
             <button class="border-none inline-block delete-btn" id="publicar"><img class="delete-img container-post" src="img/paper-plane.png" alt=""></button>
         </div>
-    </div>
-    <section id="post-container">
-   </section>`;
+<section id="post-container">
+</section>`;
   divContainer.innerHTML = register;
   divContainer.classList.add('container2');
   const section = divContainer.querySelector('#post-container');
