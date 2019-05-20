@@ -34,7 +34,7 @@ export const loginInOnSubmit = () => {
 		});
 };
 
-export const uploaderFilegetName = (user) => {
+export const getName = (user) => {
 	if (user) {
 		if (user.providerData[0].providerId != 'password') {
 			return {
@@ -76,31 +76,6 @@ export const deleteUser = (user) => {
 	})
 };
 
-export const savePostdb = (user) => {
-	let textPost = document.querySelector('#text-post').value;
-	let modoPost = document.querySelector('#visualización').value;
-	let imgPost = document.querySelector('#user-file').value;
-//	console.log(imgPost);
-//	console.log(user);
-	getName(user).then((name) => {
-		db().collection('posts').add({
-				uid: getUser().uid,
-				name: name,
-				texto: textPost,
-				state: modoPost,
-				likes: 0,
-			})
-			.then((docRef) => {
-				console.log("Document written with ID: ", docRef.id);
-				textPost = '';
-				modoPost = '';
-			})
-			.catch(function (error) {
-				console.log("Error adding document: ", error);
-			});
-	})
-};
-
 export const viewPostdb = (callback) => {
 	db().collection("posts").onSnapshot((querySnapshot) => {
 		const data = [];
@@ -139,7 +114,7 @@ export const updatePost = (postId, postText, modePost) => {
 };
 
 export const likePost = (postId, counter) => {
-	
+
 	return db().collection('posts').doc(postId).update({
 		likes: counter,
 	}).then(() => {
@@ -148,5 +123,57 @@ export const likePost = (postId, counter) => {
 };
 
 export const fileUserPost = (file) => {
-	return storage().ref('images/' + file.name).put(file);
+	const storageRef = storage().ref('images/' + file);
+	const uploadFile = storageRef.put(file);
+	//const downloadURL = uploadFile.snapshot.ref.getDownloadURL();
+	//return downloadURL;
+
+	uploadFile.on('state_changed', (snapshot) => {
+		/*var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+  console.log('Upload is ' + progress + '% done');
+  switch (snapshot.state) {
+    case firebase.storage.TaskState.PAUSED: // or 'paused'
+      console.log('Upload is paused');
+      break;
+    case firebase.storage.TaskState.RUNNING: // or 'running'
+      console.log('Upload is running');
+      break;
+  }*/
+	}, (error) => {
+			console.log(error);
+	}, () => {
+		uploadFile.snapshot.ref.getDownloadURL()
+			.then((downloadURL) => {
+
+				//return downloadURL;
+				console.log('File available at', downloadURL);
+			});
+	});
+};
+
+export const savePostdb = (user, file) => {
+	let textPost = document.querySelector('#text-post').value;
+	let modoPost = document.querySelector('#visualización').value;
+	let imgPost = fileUserPost(file);
+	//	console.log(imgPost);
+	//	console.log(user);
+	getName(user).then((name) => {
+		db().collection('posts').add({
+				uid: getUser().uid,
+				name: name,
+				texto: textPost,
+				state: modoPost,
+				likes: 0,
+				imguser : imgPost,
+			
+			})
+			.then((docRef) => {
+				console.log("Document written with ID: ", docRef.id);
+				textPost = '';
+				modoPost = '';
+			})
+			.catch(function (error) {
+				console.log("Error adding document: ", error);
+			});
+	})
 };
