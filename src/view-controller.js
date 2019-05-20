@@ -5,7 +5,8 @@ import {
 	exit,
 	loginUser,
 	db,
-	getUser
+	getUser,
+	dbStorage
 } from './controller/controller-firebase.js'
 
 
@@ -143,3 +144,4 @@ export const likePost = (postId, counter) => {
 		console.log('Le diste like++')
 	})
 };
+

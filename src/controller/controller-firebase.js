@@ -51,3 +51,7 @@ export const unsuscribe = (showProfile) =>{
   });
 }
 
+export const dbStorage = () =>{
+  return firebase.storage();
+}
+

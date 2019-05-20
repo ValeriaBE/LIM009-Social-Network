@@ -44,6 +44,10 @@ export const createPostScreen = (posts) => {
   btnPublicar.addEventListener('click', () => {
     savePostdb(getUser());
   })
+  const uploadImg = divContainer.querySelector("#add-image");
+  uploadImg.addEventListener('click',()=>{
+    divContainer.querySelector("#fileInput").click();
+  })
   return divContainer;
 }
 
