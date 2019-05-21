@@ -23,7 +23,7 @@ export const showActUser = (user, posts) => {
         </div>
     </header>
     <section class="margin big-profile center container">
-    <div class="flex post-border">
+    <div class="inline-flex post-border padding-ten">
         <figure class="photo-box inline-block">
             <img class="img-user"src="${userCheck.photoURL == null ? 'img/No-Photo-Available.jpg': userCheck.photoURL}" alt="foto">
         </figure>

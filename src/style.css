@@ -9,14 +9,11 @@
 .border-none{
     border: none;
 }
+.inline-flex{
+    display: inline-flex;
+}
 .background-none{
     background: none;
-}
-.none{
-    visibility: hidden;
-}
-.visible{
-    visibility: visible;
 }
 .auto{
     margin: auto;

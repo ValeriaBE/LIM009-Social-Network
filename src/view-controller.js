@@ -93,7 +93,7 @@ export const deletePost = (postId) => {
 	return db().collection("posts").doc(postId).delete();
 };
 
-export const updatePost = (postId, postText) => {
+export const updatePost = (postId, postText,modePost) => {
 	// document.querySelector('#text-post').value = postText;
 	// document.querySelector('#visualización').value = modePost;
 	// let boton = document.querySelector('#publicar');
@@ -104,7 +104,7 @@ export const updatePost = (postId, postText) => {
 console.log(postId);
 		return db().collection("posts").doc(postId).update({
 			texto: postText,
-			// state: modePost,
+			state: modePost,
 		}).then((docRef) => {
 			console.log('Document successfully update!')
 			document.querySelector('#text-post').value = '';
