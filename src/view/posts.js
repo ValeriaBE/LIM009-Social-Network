@@ -3,7 +3,7 @@ import {
   deletePost,
   updatePost,
   likePost,
-  //fileUserPost
+  fileUserPost
   } from "../view-controller.js";
 import {
   getUser,
@@ -41,8 +41,8 @@ export const createPostScreen = (posts) => {
   btnFile.addEventListener('change', (e) => {
     let file = e.target.files[0];
  console.log(file);
-    //fileUserPost(file);
-    storage().ref('images/' + file.name).put(file);
+    fileUserPost(file);
+  //  storage().ref('images/' + file.name).put(file);
   });
   const btnPublicar = divContainer.querySelector("#publicar");
   btnPublicar.addEventListener('click', () => {

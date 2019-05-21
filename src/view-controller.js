@@ -123,7 +123,7 @@ export const likePost = (postId, counter) => {
 };
 
 export const fileUserPost = (file) => {
-	const storageRef = storage().ref('images/' + file);
+	const storageRef = storage().ref('images/' + file.name);
 	const uploadFile = storageRef.put(file);
 	//const downloadURL = uploadFile.snapshot.ref.getDownloadURL();
 	//return downloadURL;
@@ -154,7 +154,7 @@ export const fileUserPost = (file) => {
 export const savePostdb = (user, file) => {
 	let textPost = document.querySelector('#text-post').value;
 	let modoPost = document.querySelector('#visualización').value;
-	let imgPost = fileUserPost(file);
+	//let imgPost = fileUserPost(file);
 	//	console.log(imgPost);
 	//	console.log(user);
 	getName(user).then((name) => {
@@ -164,7 +164,7 @@ export const savePostdb = (user, file) => {
 				texto: textPost,
 				state: modoPost,
 				likes: 0,
-				imguser : imgPost,
+		//		imguser : imgPost,
 			
 			})
 			.then((docRef) => {
