@@ -237,6 +237,19 @@
     overflow:hidden;
     width: 0;
 }
+.ediTextBox{
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    margin: auto;
+}
+.margin-top{
+    margin-top: 10px;
+    width:20%;
+}
+.bottom{
+    margin-bottom: 10px;
+}
 
 /* @media (min-width: 372px) {
 

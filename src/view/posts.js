@@ -97,10 +97,10 @@ editBtn.addEventListener('click', (evt) => {
   if (objPosts.uid === user.uid) {
     const guardar = divContainer.querySelector('#editText');
     const newElement = document.createElement('textarea');
-    const submit = document.createElement('button');
     const select = document.createElement('select');
     const option1 = document.createElement("option");
     const option2 = document.createElement("option");
+    const submit = document.createElement('button');
 
     option1.setAttribute("value", "privado");
     const privateMode = document.createTextNode("Privado");
@@ -118,6 +118,10 @@ editBtn.addEventListener('click', (evt) => {
     newElement.setAttribute('id', 'editArea');
     select.setAttribute('id', 'modo');
     submit.setAttribute('id', 'submitEdit');
+    guardar.classList.add('editTextBox');
+    newElement.classList.add('main-img', 'auto');
+    submit.classList.add('margin-top', 'auto', 'buttons','block','color2','text-color');
+    submit.classList.add('margin-top', 'auto', 'bottom');
 
     let btnTarget = evt.target;
     let idTarget = btnTarget.getAttribute('data-post-id');
