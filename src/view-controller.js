@@ -6,8 +6,8 @@ import {
 	loginUser,
 	db,
 	getUser,
-	dbStorage
-} from './controller/controller-firebase.js'
+	storage
+} from './controller/controller-firebase.js';
 
 
 export const registerInOnSubmit = () => {
@@ -22,7 +22,7 @@ export const registerInOnSubmit = () => {
 		})
 		.then(() => exit())
 		.then(() => changeRoute("#/home"))
-}
+};
 
 export const loginInOnSubmit = () => {
 	const email = document.querySelector('[id="email-login"]').value;
@@ -32,7 +32,7 @@ export const loginInOnSubmit = () => {
 		.catch(() => {
 			alert('Usuario invalido');
 		});
-}
+};
 
 export const getName = (user) => {
 	if (user) {
@@ -49,54 +49,32 @@ export const getName = (user) => {
 				})
 		}
 	}
-}
+};
+
 export const exitUser = () => {
 	return exit()
-}
-
+};
 
 export const showUser = () => {
 	activeUser(changeRoute)
-}
+};
 
 export const changeRoute = (route) => {
 	location.hash = route;
-}
+};
 
 // Save names users loggedOn with Google and Facebook
 export const createUser = (cred) => {
 	return db().collection('users').doc(cred.user.uid).set({
 		name: cred.user.displayName
 	})
-}
+};
 
 export const deleteUser = (user) => {
-	user.delete().then(() => {
+	user.deleteuploaderFile().then(() => {
 		alert('Usuario eliminad@')
 	})
-}
-export const savePostdb = (user) => {
-	let textPost = document.querySelector('#text-post').value;
-	let modoPost = document.querySelector('#visualización').value;
-	console.log(user);
-	getName(user).then((name) => {
-		db().collection('posts').add({
-				uid: getUser().uid,
-				name: name,
-				texto: textPost,
-				state: modoPost,
-				likes: 0,
-			})
-			.then((docRef) => {
-				console.log("Document written with ID: ", docRef.id);
-				textPost = '';
-				modoPost = '';
-			})
-			.catch(function (error) {
-				console.error("Error adding document: ", error);
-			});
-	})
-}
+};
 
 export const viewPostdb = (callback) => {
 	db().collection("posts").onSnapshot((querySnapshot) => {
@@ -106,38 +84,36 @@ export const viewPostdb = (callback) => {
 				id: doc.id,
 				...doc.data()
 			});
-			console.log(data);
 		});
 		callback(data);
 	});
-}
+};
 
 export const deletePost = (postId) => {
 	return db().collection("posts").doc(postId).delete();
-}
+};
 
-export const updatePost = (postId, postText, modePost) => {
-	document.querySelector('#text-post').value = postText;
-	document.querySelector('#visualización').value = modePost;
-	let boton = document.querySelector('#publicar');
+export const updatePost = (postId, postText) => {
+	// document.querySelector('#text-post').value = postText;
+	// document.querySelector('#visualización').value = modePost;
+	// let boton = document.querySelector('#publicar');
 
-	boton.addEventListener('click', () => {
-		let postText = document.querySelector('#text-post').value;
-		let modoPost = document.querySelector('#visualización').value;
-
+	// // boton.addEventListener('click', () => {
+	// 	// let postText = document.querySelector('#text-post').value;
+	// 	// let modoPost = document.querySelector('#visualización').value;
+console.log(postId);
 		return db().collection("posts").doc(postId).update({
 			texto: postText,
-			modo: modoPost,
+			// state: modePost,
 		}).then((docRef) => {
 			console.log('Document successfully update!')
 			document.querySelector('#text-post').value = '';
 			document.querySelector('#visualización').value = '';
 		})
-	})
-}
+};
 
 export const likePost = (postId, counter) => {
-	
+
 	return db().collection('posts').doc(postId).update({
 		likes: counter,
 	}).then(() => {
@@ -145,3 +121,58 @@ export const likePost = (postId, counter) => {
 	})
 };
 
+export const fileUserPost = (file) => {
+	const storageRef = storage().ref('images/' + file);
+	const uploadFile = storageRef.put(file);
+	//const downloadURL = uploadFile.snapshot.ref.getDownloadURL();
+	//return downloadURL;
+
+	uploadFile.on('state_changed', (snapshot) => {
+		/*var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+  console.log('Upload is ' + progress + '% done');
+  switch (snapshot.state) {
+    case firebase.storage.TaskState.PAUSED: // or 'paused'
+      console.log('Upload is paused');
+      break;
+    case firebase.storage.TaskState.RUNNING: // or 'running'
+      console.log('Upload is running');
+      break;
+  }*/
+	}, (error) => {
+			console.log(error);
+	}, () => {
+		uploadFile.snapshot.ref.getDownloadURL()
+			.then((downloadURL) => {
+
+				//return downloadURL;
+				console.log('File available at', downloadURL);
+			});
+	});
+};
+
+export const savePostdb = (user) => {
+	let textPost = document.querySelector('#text-post').value;
+	let modoPost = document.querySelector('#visualización').value;
+	// let imgPost = fileUserPost(file);
+	//	console.log(imgPost);
+	//	console.log(user);
+	getName(user).then((name) => {
+		db().collection('posts').add({
+				uid: getUser().uid,
+				name: name,
+				texto: textPost,
+				state: modoPost,
+				likes: 0,
+				// imguser : imgPost,
+			
+			})
+			.then((docRef) => {
+				console.log("Document written with ID: ", docRef.id);
+				textPost = '';
+				modoPost = '';
+			})
+			.catch(function (error) {
+				console.log("Error adding document: ", error);
+			});
+	})
+};
