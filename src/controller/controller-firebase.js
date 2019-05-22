@@ -16,7 +16,7 @@ export const activeUser = (changeRoute) => {
       changeRoute('#/profile');
     } else {
       changeRoute('#/home');
-    } 
+    }
   });
 };
 
@@ -34,7 +34,7 @@ export const loginFacebook = () => {
   return firebase.auth().signInWithPopup(provider)
 };
 
-export const unsuscribe = (showProfile) =>{
+export const unsuscribe = (showProfile) => {
   return firebase.auth().onAuthStateChanged((u2) => {
     if (u2) {
       showProfile(u2)
@@ -47,7 +47,7 @@ export const exit = () => {
   return firebase.auth().signOut()
 };
 
-export const db = () =>{
+export const db = () => {
   return firebase.firestore();
 }
 

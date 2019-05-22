@@ -53,10 +53,6 @@ const viewTmp = (routers) => {
             }, posts))
           })
         });
-        // viewPostdb((posts) =>{
-        //   root.innerHTML="";
-        //   root.appendChild(createPostScreen(posts));
-        // })
       }
       const u = getUser();
       if (u) {

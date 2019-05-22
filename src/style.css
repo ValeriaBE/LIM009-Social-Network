@@ -76,6 +76,10 @@
     margin:12px;
 }
 
+.eighty{
+    width: 80%;
+}
+
 .flex-column{
     flex-direction: column;
 }
@@ -245,12 +249,18 @@
 }
 .margin-top{
     margin-top: 10px;
-    width:20%;
 }
 .bottom{
     margin-bottom: 10px;
 }
-
+.img-comment{
+    width: 5%;
+    border-radius: 50%;
+    margin: 10px;
+}
+.row-reverse{
+    flex-direction: row-reverse;
+}
 /* @media (min-width: 372px) {
 
 }

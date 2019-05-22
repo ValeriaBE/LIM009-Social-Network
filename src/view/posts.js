@@ -4,7 +4,7 @@ import {
   updatePost,
   likePost,
   fileUserPost,
-  } from "../view-controller.js";
+} from "../view-controller.js";
 import {
   getUser,
   storage,
@@ -41,7 +41,7 @@ export const createPostScreen = (posts) => {
   const btnFile = divContainer.querySelector('#user-file');
   btnFile.addEventListener('change', (e) => {
     let file = e.target.files[0];
- console.log(file);
+    console.log(file);
     fileUserPost(file);
   });
   const btnPublicar = divContainer.querySelector("#publicar");
@@ -58,11 +58,11 @@ export const viewPostScreen = (objPosts) => {
   const templatesPosts = `
     <div class="flex first-div-style">
       <p class="color-post publicado-name">Publicado por ${objPosts.name}</p>
-      <p class="color-post " data-post-mode ='${objPosts.state}'></p>
+      <p class="color-post" data-post-mode ="${objPosts.state}">${objPosts.state}</p>
       ${objPosts.uid === user.uid ?
-        `<button class="color-post exit-btn border-none" padding-ten id="deleteBtn"><img class="color-post delete-img" src="img/delete.png" alt="" data-post-id="${objPosts.id}"/></button>` :
-        ''
-      }
+      `<button class="color-post exit-btn border-none" padding-ten id="deleteBtn"><img class="color-post delete-img" src="img/delete.png" alt="" data-post-id="${objPosts.id}"/></button>` :
+      ''
+    }
     </div>
     <div id="editText">
       <p class="padding-ten">${objPosts.texto}</p>
@@ -71,87 +71,120 @@ export const viewPostScreen = (objPosts) => {
       <span id="counterLike">${objPosts.likes}</span>
       <button class="border-none container-post delete-btn" id="likeBtn"><img class="color-post delete-img" src="img/like.png" alt="" data-post-id="${objPosts.id}"/></button>
       ${objPosts.uid === user.uid ?
-      `<button class="border-none container-post delete-btn" id="editBtn"><img class="color-post delete-img" src="img/edit.png" alt="pencil-editar" data-post-id="${objPosts.id}" data-post-text="${objPosts.texto}"/></button>`:
+      `<button class="border-none container-post delete-btn" id="editBtn"><img class="color-post delete-img" src="img/edit.png" alt="pencil-editar" data-post-id="${objPosts.id}" data-post-text="${objPosts.texto}" data-post-mode ="${objPosts.state}"/></button>` :
       ''
-}
-    </div>`;
+    }
+    <button class="border-none container-post delete-btn" id="commentBtn"><img class="color-post delete-img" src="img/chat.png" alt="pencil-editar"/></button>
+    </div>
+    <div id="comments" class="flex row-reverse center"></div>`;
   //console.log(objPosts, getUser());
   divContainer.innerHTML += templatesPosts;
   divContainer.classList.add('container2', 'published-post', 'post-border');
   const deleteBtn = divContainer.querySelector('#deleteBtn');
   console.log(objPosts.uid, deleteBtn)
-  if(deleteBtn) {
+  if (deleteBtn) {
     deleteBtn.addEventListener('click', (evt) => {
       if (objPosts.uid === user.uid) {
         let btnTarget = evt.target;
         let idTarget = btnTarget.getAttribute('data-post-id');
         deletePost(idTarget);
-    }
-  })
+      }
+    })
   }
 
-const editBtn = divContainer.querySelector('#editBtn');
-if(editBtn){
-editBtn.addEventListener('click', (evt) => {
-  const user = getUser();
-  if (objPosts.uid === user.uid) {
-    const guardar = divContainer.querySelector('#editText');
-    const newElement = document.createElement('textarea');
-    const select = document.createElement('select');
-    const option1 = document.createElement("option");
-    const option2 = document.createElement("option");
-    const submit = document.createElement('button');
+  const editBtn = divContainer.querySelector('#editBtn');
+  if (editBtn) {
+    editBtn.addEventListener('click', (evt) => {
+      const user = getUser();
+      if (objPosts.uid === user.uid) {
+        const guardar = divContainer.querySelector('#editText');
+        const newElement = document.createElement('textarea');
+        const select = document.createElement('select');
+        const option1 = document.createElement("option");
+        const option2 = document.createElement("option");
+        const submit = document.createElement('button');
 
-    option1.setAttribute("value", "privado");
-    const privateMode = document.createTextNode("Privado");
-    option2.setAttribute("value", "publico");
-    const publicMode = document.createTextNode("Publico");
+        option1.setAttribute("value", "privado");
+        const privateMode = document.createTextNode("Privado");
+        option2.setAttribute("value", "publico");
+        const publicMode = document.createTextNode("Publico");
 
-    select.innerHTML='Visualización';
-    submit.innerHTML='Submit';
+        select.innerHTML = 'Visualización';
+        submit.innerHTML = 'Submit';
 
-    option1.appendChild(privateMode);
-    select.appendChild(option1);
-    option2.appendChild(publicMode);
-    select.appendChild(option2);
+        option1.appendChild(privateMode);
+        select.appendChild(option1);
+        option2.appendChild(publicMode);
+        select.appendChild(option2);
 
-    newElement.setAttribute('id', 'editArea');
-    select.setAttribute('id', 'modo');
-    submit.setAttribute('id', 'submitEdit');
-    guardar.classList.add('editTextBox');
-    newElement.classList.add('main-img', 'auto');
-    submit.classList.add('margin-top', 'auto', 'buttons','block','color2','text-color');
-    submit.classList.add('margin-top', 'auto', 'bottom');
+        newElement.setAttribute('id', 'editArea');
+        select.setAttribute('id', 'modo');
+        submit.setAttribute('id', 'submitEdit');
+        guardar.classList.add('editTextBox');
+        newElement.classList.add('main-img', 'auto');
+        submit.classList.add('margin-top', 'auto', 'buttons', 'block', 'color2', 'text-color');
+        submit.classList.add('margin-top', 'auto', 'bottom');
 
-    let btnTarget = evt.target;
-    let idTarget = btnTarget.getAttribute('data-post-id');
-    let textTarget = btnTarget.getAttribute('data-post-text');
-    let modoTarget = btnTarget.getAttribute('data-post-mode');
+        let btnTarget = evt.target;
+        let idTarget = btnTarget.getAttribute('data-post-id');
+        let textTarget = btnTarget.getAttribute('data-post-text');
+        let modoTarget = btnTarget.getAttribute('data-post-mode');
 
-    console.log(idTarget, textTarget, modoTarget);
-    newElement.innerHTML = textTarget;
-    guardar.appendChild(newElement);
-    guardar.appendChild(submit);
-    guardar.appendChild(select);
+        console.log(idTarget, textTarget, modoTarget);
+        newElement.innerHTML = textTarget;
+        guardar.appendChild(newElement);
+        guardar.appendChild(submit);
+        guardar.appendChild(select);
 
-    submit.addEventListener('click',()=>{
-      textTarget = guardar.querySelector('#editArea').value;
-      guardar.querySelector('#modo').value = modoTarget;   
-      console.log(textTarget)
-      updatePost(idTarget, textTarget, modoTarget);
-    }) 
-
+        submit.addEventListener('click', () => {
+          textTarget = guardar.querySelector('#editArea').value;
+          modoTarget = guardar.querySelector('#modo').value;
+          console.log(modoTarget)
+          updatePost(idTarget, textTarget, modoTarget);
+        })
+      }
+    })
   }
-})}
-const likeBtn = divContainer.querySelector('#likeBtn');
-likeBtn.addEventListener('click', (evt) => {
+  const commentBtn = divContainer.querySelector('#commentBtn');
+  if (commentBtn) {
+    commentBtn.addEventListener('click', (evt) => {
+       const user = getUser();
+        const guardar = divContainer.querySelector('#comments');
+        const newElement = document.createElement('input');
+        const img = document.createElement('img');
+        img.src= `${user.photoURL}`;
+
+        newElement.setAttribute('id', 'editArea');
+        guardar.classList.add('editTextBox');
+        newElement.classList.add('auto', 'inputs', 'margin-top', 'eighty');
+        img.classList.add('img-comment');
+
+        let btnTarget = evt.target;
+        let idTarget = btnTarget.getAttribute('data-post-id');
+        let textTarget = btnTarget.getAttribute('data-post-text');
+        let modoTarget = btnTarget.getAttribute('data-post-mode');
+
+        console.log(idTarget, textTarget, modoTarget);
+        newElement.innerHTML = textTarget;
+        guardar.appendChild(newElement);
+        guardar.appendChild(img);
+
+        newElement.addEventListener('keypress', (event) => {
+          if(event.keyCode===13){
+            alert('hi');
+          }
+        })
+    })
+  }
+  const likeBtn = divContainer.querySelector('#likeBtn');
+  likeBtn.addEventListener('click', (evt) => {
     let btnTarget = evt.target;
     let idTarget = btnTarget.getAttribute('data-post-id');
     let counterLike = parseInt(divContainer.querySelector('#counterLike').innerHTML);
-    let counter = counterLike+1;
+    let counter = counterLike + 1;
     console.log(counter);
     divContainer.querySelector('#counterLike').innerHTML = counter;
     likePost(idTarget, counter);
   })
-return divContainer;
+  return divContainer;
 }

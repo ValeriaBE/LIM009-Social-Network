@@ -1,13 +1,13 @@
-import{
-registerInOnSubmit
+import {
+  registerInOnSubmit
 } from '../view-controller.js'
 
-export const registerScreen = () =>{
+export const registerScreen = () => {
 
   const divContainer = document.createElement('div');
-  divContainer.innerHTML='';
-    const register =
-      `<figure>
+  divContainer.innerHTML = '';
+  const register =
+    `<figure>
         <img class="main-img" src="img/u.png" alt="">
       </figure>
       <section class="margin flex-column flex" >
@@ -22,8 +22,8 @@ export const registerScreen = () =>{
         </div>
       </form> 
       </section>`;
-      divContainer.innerHTML = register;
-      divContainer.classList.add('container');
+  divContainer.innerHTML = register;
+  divContainer.classList.add('container');
 
   const buttonRegisterEmail = divContainer.querySelector('#send');
   buttonRegisterEmail.addEventListener('click', () => {

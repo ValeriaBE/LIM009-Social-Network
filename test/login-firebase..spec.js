@@ -23,6 +23,7 @@ import {
 	loginFacebook,
 	exit
 } from "../src/controller/controller-firebase.js";
+import { loginInOnSubmit } from "../src/view-controller.js";
 
 describe('Registrar usuarios', () => {
 	it('registerUser deberia ser una funcion', () => {

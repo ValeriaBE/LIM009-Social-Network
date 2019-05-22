@@ -93,27 +93,18 @@ export const deletePost = (postId) => {
 	return db().collection("posts").doc(postId).delete();
 };
 
-export const updatePost = (postId, postText,modePost) => {
-	// document.querySelector('#text-post').value = postText;
-	// document.querySelector('#visualización').value = modePost;
-	// let boton = document.querySelector('#publicar');
-
-	// // boton.addEventListener('click', () => {
-	// 	// let postText = document.querySelector('#text-post').value;
-	// 	// let modoPost = document.querySelector('#visualización').value;
-console.log(postId);
-		return db().collection("posts").doc(postId).update({
-			texto: postText,
-			state: modePost,
-		}).then((docRef) => {
-			console.log('Document successfully update!')
-			document.querySelector('#text-post').value = '';
-			document.querySelector('#visualización').value = '';
-		})
+export const updatePost = (postId, postText, modePost) => {
+	return db().collection("posts").doc(postId).update({
+		texto: postText,
+		state: modePost,
+	}).then(() => {
+		console.log('Document successfully update!')
+		document.querySelector('#text-post').value = '';
+		document.querySelector('#visualización').value = '';
+	})
 };
 
 export const likePost = (postId, counter) => {
-
 	return db().collection('posts').doc(postId).update({
 		likes: counter,
 	}).then(() => {
@@ -139,7 +130,7 @@ export const fileUserPost = (file) => {
       break;
   }*/
 	}, (error) => {
-			console.log(error);
+		console.log(error);
 	}, () => {
 		uploadFile.snapshot.ref.getDownloadURL()
 			.then((downloadURL) => {
@@ -158,14 +149,14 @@ export const savePostdb = (user) => {
 	//	console.log(user);
 	getName(user).then((name) => {
 		db().collection('posts').add({
-				uid: getUser().uid,
-				name: name,
-				texto: textPost,
-				state: modoPost,
-				likes: 0,
-				// imguser : imgPost,
-			
-			})
+			uid: getUser().uid,
+			name: name,
+			texto: textPost,
+			state: modoPost,
+			likes: 0,
+			// imguser : imgPost,
+
+		})
 			.then((docRef) => {
 				console.log("Document written with ID: ", docRef.id);
 				textPost = '';
