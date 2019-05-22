@@ -167,3 +167,12 @@ export const savePostdb = (user) => {
 			});
 	})
 };
+
+export const saveComments = (postId, textPost, user) =>{
+	getName(user).then((name) => {
+		db().collection('posts').doc(postId).collection('comments').add({
+			user: name,
+			texto: textPost,
+	})
+	})
+}

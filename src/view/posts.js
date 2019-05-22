@@ -4,6 +4,7 @@ import {
   updatePost,
   likePost,
   fileUserPost,
+  saveComments,
 } from "../view-controller.js";
 import {
   getUser,
@@ -74,7 +75,7 @@ export const viewPostScreen = (objPosts) => {
       `<button class="border-none container-post delete-btn" id="editBtn"><img class="color-post delete-img" src="img/edit.png" alt="pencil-editar" data-post-id="${objPosts.id}" data-post-text="${objPosts.texto}" data-post-mode ="${objPosts.state}"/></button>` :
       ''
     }
-    <button class="border-none container-post delete-btn" id="commentBtn"><img class="color-post delete-img" src="img/chat.png" alt="pencil-editar"/></button>
+    <button class="border-none container-post delete-btn" id="commentBtn"><img class="color-post delete-img" src="img/chat.png" data-post-id="${objPosts.id}" alt="pencil-editar"/></button>
     </div>
     <div id="comments" class="flex row-reverse center"></div>`;
   //console.log(objPosts, getUser());
@@ -154,24 +155,22 @@ export const viewPostScreen = (objPosts) => {
         const img = document.createElement('img');
         img.src= `${user.photoURL}`;
 
-        newElement.setAttribute('id', 'editArea');
+        newElement.setAttribute('id', 'comment-text');
         guardar.classList.add('editTextBox');
         newElement.classList.add('auto', 'inputs', 'margin-top', 'eighty');
         img.classList.add('img-comment');
 
         let btnTarget = evt.target;
         let idTarget = btnTarget.getAttribute('data-post-id');
-        let textTarget = btnTarget.getAttribute('data-post-text');
-        let modoTarget = btnTarget.getAttribute('data-post-mode');
 
-        console.log(idTarget, textTarget, modoTarget);
-        newElement.innerHTML = textTarget;
+        console.log(idTarget);
         guardar.appendChild(newElement);
         guardar.appendChild(img);
 
         newElement.addEventListener('keypress', (event) => {
           if(event.keyCode===13){
-            alert('hi');
+            let textPost = guardar.querySelector('#comment-text').value;
+              saveComments(idTarget, textPost, getUser())
           }
         })
     })
