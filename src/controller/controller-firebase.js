@@ -2,10 +2,6 @@ export const registerUser = (emailSignIn, passwordSignIn) => {
   return firebase.auth().createUserWithEmailAndPassword(emailSignIn, passwordSignIn)
 };
 
-// export const checkEmail = () => {
-//   return firebase.auth().currentUser.sendEmailVerification();
-// };
-
 export const loginUser = (emailLogIn, passwordLogIn) => {
   return firebase.auth().signInWithEmailAndPassword(emailLogIn, passwordLogIn)
 };
@@ -39,7 +35,6 @@ export const unsuscribe = (showProfile) => {
     if (u2) {
       showProfile(u2)
     }
-    // unsuscribe();
   });
 }
 
@@ -47,11 +42,53 @@ export const exit = () => {
   return firebase.auth().signOut()
 };
 
-export const db = () => {
-  return firebase.firestore();
+// Save names users loggedOn with Google and Facebook
+export const createUser = (cred) => {
+	return firebase.firestore().collection('users').doc(cred.user.uid).set({
+		name: cred.user.displayName
+	})
 }
 
-export const storage = () => {
-  return firebase.storage();
+export const viewPostdb = (callback) => {
+	firebase.firestore().collection("posts").onSnapshot((querySnapshot) => {
+		const data = [];
+		querySnapshot.forEach((doc) => {
+			data.push({
+				id: doc.id,
+				...doc.data()
+			});
+		});
+		callback(data);
+	});
 }
 
+export const deletePost = (postId) => {
+	return firebase.firestore().collection("posts").doc(postId).delete();
+}
+
+export const updatePost = (postId, postText, modePost) => {
+	return firebase.firestore().collection("posts").doc(postId).update({
+		texto: postText,
+		state: modePost,
+	})
+};
+
+export const likePost = (postId, counter) => {
+	return firebase.firestore().collection('posts').doc(postId).update({
+		likes: counter,
+	})
+};
+
+export const savePostdb = (getName, textPost, modoPost) => {
+  const user = getUser();
+  getName(user)
+  .then((name) => {
+		firebase.firestore().collection('posts').add({
+			uid: user.uid,
+			name: name,
+			texto: textPost,
+			state: modoPost,
+			likes: 0,
+		})
+	})
+};
