@@ -76,6 +76,10 @@
     margin:12px;
 }
 
+.eighty{
+    width: 80%;
+}
+
 .flex-column{
     flex-direction: column;
 }
@@ -107,7 +111,6 @@
 .header-profile{
     height: 50px;
 }
-
 .center{
     justify-content: center;
     align-items: center;
@@ -236,6 +239,18 @@
     height:0;
     overflow:hidden;
     width: 0;
+}
+.ediTextBox{
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    margin: auto;
+}
+.margin-top{
+    margin-top: 10px;
+}
+.bottom{
+    margin-bottom: 10px;
 }
 
 /* @media (min-width: 372px) {

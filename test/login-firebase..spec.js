@@ -23,12 +23,13 @@ import {
 	loginFacebook,
 	exit
 } from "../src/controller/controller-firebase.js";
+import { loginInOnSubmit } from "../src/view-controller.js";
 
 describe('Registrar usuarios', () => {
 	it('registerUser deberia ser una funcion', () => {
 		expect(typeof (registerUser)).toBe('function')
 	});
-	it('Deberia regitrar un nuevo usuario', () => {
+	it('Deberia registrar un nuevo usuario', () => {
 		return registerUser('maga@wenergy.la', 'mg1234')
 			.then((user) => {
 				expect(user.email).toEqual('maga@wenergy.la')
@@ -54,17 +55,15 @@ describe('Login de Usuarios', () => {
 	})
 });
 
-// describe('Observador de estado de usuario', () => {
-// 	it('activeUser deberia ser una funcion', () => {
-// 		expect(typeof (activeUser)).toBe('function')
-// 	});
-// 	it('deberia hacer cambio de ruta si hay un user activo', (done) => {
-// 		activeUser((user) => {
-// 			expect(user).toEqual('#/profile')
-// 			done()
-// 		})
-// 	})
-// });
+describe('getUser', () => {
+	it('deberia retornar el correo del usuario que yo defina', () => {
+		loginUser('front@end.la', '123456')
+		.then(()=>{
+			const user= getUser();
+			expect(user.email).toEqual('front@end.la')
+		})
+	})
+});
 
 describe('Login de Usuarios con Google', () => {
 	it('deberia ser una funcion', () => {

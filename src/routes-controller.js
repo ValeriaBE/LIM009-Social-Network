@@ -9,16 +9,18 @@ import {
 } from './view/profile.js';
 import {
   getUser,
-  unsuscribe
+  unsuscribe,
+  viewPostdb
 } from './controller/controller-firebase.js';
 import {
   getName,
-  viewPostdb
 } from './view-controller.js';
-import {
-  createPostScreen
-} from './view/posts.js'
 
+
+export const initRouter = () => {
+  window.addEventListener('load', changeTmp(window.location.hash))
+  if (("onhashchange" in window)) window.onhashchange = () => changeTmp(window.location.hash)
+}
 
 const changeTmp = (hash) => {
   if (hash === '#/' || hash === '' || hash === '#') {
@@ -31,7 +33,6 @@ const changeTmp = (hash) => {
 const viewTmp = (routers) => {
   const router = routers.substr(2, routers.length - 2)
   const root = document.getElementById('root');
-  console.log(router)
   root.innerHTML = '';
   switch (router) {
     case 'home':
@@ -42,21 +43,18 @@ const viewTmp = (routers) => {
       root.appendChild(registerScreen());
       break;
     case 'profile': {
-      root.innerHTML = "";
+      root.innerHTML = '';
       const showProfile = (user) => {
-        getName(user).then((name) => {
+        getName(user)
+        .then((name) => {
           viewPostdb((posts) => {
-            root.innerHTML = "";
+            root.innerHTML = '';
             root.appendChild(showActUser({
               ...user,
               name,
             }, posts))
           })
         });
-        // viewPostdb((posts) =>{
-        //   root.innerHTML="";
-        //   root.appendChild(createPostScreen(posts));
-        // })
       }
       const u = getUser();
       if (u) {
@@ -70,9 +68,4 @@ const viewTmp = (routers) => {
       root.appendChild(Login());
       break;
   }
-}
-
-export const initRouter = () => {
-  window.addEventListener('load', changeTmp(window.location.hash))
-  if (("onhashchange" in window)) window.onhashchange = () => changeTmp(window.location.hash)
 }
