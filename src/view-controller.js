@@ -93,24 +93,23 @@ export const deletePost = (postId) => {
 	return db().collection("posts").doc(postId).delete();
 };
 
-export const updatePost = (postId, postText, modePost) => {
-	document.querySelector('#text-post').value = postText;
-	document.querySelector('#visualización').value = modePost;
-	let boton = document.querySelector('#publicar');
+export const updatePost = (postId, postText,modePost) => {
+	// document.querySelector('#text-post').value = postText;
+	// document.querySelector('#visualización').value = modePost;
+	// let boton = document.querySelector('#publicar');
 
-	boton.addEventListener('click', () => {
-		let postText = document.querySelector('#text-post').value;
-		let modoPost = document.querySelector('#visualización').value;
-
+	// // boton.addEventListener('click', () => {
+	// 	// let postText = document.querySelector('#text-post').value;
+	// 	// let modoPost = document.querySelector('#visualización').value;
+console.log(postId);
 		return db().collection("posts").doc(postId).update({
 			texto: postText,
-			modo: modoPost,
+			state: modePost,
 		}).then((docRef) => {
 			console.log('Document successfully update!')
 			document.querySelector('#text-post').value = '';
 			document.querySelector('#visualización').value = '';
 		})
-	})
 };
 
 export const likePost = (postId, counter) => {
@@ -151,20 +150,21 @@ export const fileUserPost = (file) => {
 	});
 };
 
-export const savePostdb = (user, file) => {
+export const savePostdb = (user) => {
 	let textPost = document.querySelector('#text-post').value;
 	let modoPost = document.querySelector('#visualización').value;
-	//let imgPost = fileUserPost(file);
-	//	console.log(imgPost);
-	//	console.log(user);
+
+
 	getName(user).then((name) => {
+		//let user = getUser();
 		db().collection('posts').add({
-				uid: getUser().uid,
+				uid: user.uid,
+				photoUser: user.photoURL, 
 				name: name,
 				texto: textPost,
 				state: modoPost,
 				likes: 0,
-		//		imguser : imgPost,
+		//		imguser : urlDonw,
 			
 			})
 			.then((docRef) => {
