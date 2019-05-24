@@ -42,14 +42,18 @@ export const screen1 = () => {
 
   const facebookLogin = divElemt.querySelector("#fb");
   facebookLogin.addEventListener('click', () => {
-    loginFacebook().then(createUser).then(() => {
+    loginFacebook()
+    .then(createUser)
+    .then(() => {
       changeRoute("#/profile");
     })
   })
 
   const googleLogin = divElemt.querySelector("#google");
   googleLogin.addEventListener('click', () => {
-    loginGoogle().then(createUser).then(() => {
+    loginGoogle()
+    .then(createUser)
+    .then(() => {
       changeRoute("#/profile");
     })
   })
