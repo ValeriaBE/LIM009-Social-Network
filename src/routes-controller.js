@@ -9,8 +9,8 @@ import {
 } from './view/profile.js';
 import {
   getUser,
-  unsuscribe,
-  viewPostdb
+  viewPostdb,
+  activeUser
 } from './controller/controller-firebase.js';
 import {
   getName,
@@ -60,7 +60,7 @@ const viewTmp = (routers) => {
       if (u) {
         showProfile(u)
       } else {
-        unsuscribe(showProfile);
+        activeUser(showProfile);
       }
       break;
     }

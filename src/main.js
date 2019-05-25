@@ -1,6 +1,6 @@
 
 import { initRouter } from './routes-controller.js';
-import { showUser } from './view-controller.js';
+
 // Initialize Firebase
 
 window.addEventListener('load', () => {
@@ -15,5 +15,5 @@ window.addEventListener('load', () => {
     };
     firebase.initializeApp(config);
     initRouter();
-    // showUser();
+
 });

@@ -1,10 +1,11 @@
 import {
 	registerUser,
-	activeUser,
 	exit,
 	loginUser,
 	db,
-	savePostdb
+	savePostdb,
+	getUser,
+
 } from './controller/controller-firebase.js';
 
 
@@ -53,10 +54,6 @@ export const exitUser = () => {
 	return exit()
 };
 
-export const showUser = () => {
-	activeUser(changeRoute)
-};
-
 export const changeRoute = (route) => {
 	location.hash = route;
 };
@@ -64,5 +61,14 @@ export const changeRoute = (route) => {
 export const savePost = () => {
 	let textPost = document.querySelector('#text-post').value;
 	let modoPost = document.querySelector('#visualización').value;
+<<<<<<< HEAD
 	savePostdb(getName, textPost, modoPost);
 }
+=======
+	const user = getUser();
+	getName(user)
+	.then((name) => {
+	savePostdb(user.uid, name, textPost, modoPost);
+	})
+}
+>>>>>>> e0716afc9e8a5fe5958c66041464c9e7e3468e61

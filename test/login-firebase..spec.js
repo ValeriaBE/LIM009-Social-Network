@@ -15,53 +15,40 @@ global.firebase = firebasemock.MockFirebaseSdk(
 // fxs a testear
 import {
 	registerUser,
-	// checkEmail,
 	loginUser,
-	// activeUser,
-	// getUser,
+	getUser,
 	loginGoogle,
 	loginFacebook,
-	exit
+	exit,
+	activeUser
 } from "../src/controller/controller-firebase.js";
 import { loginInOnSubmit } from "../src/view-controller.js";
 
 describe('Registrar usuarios', () => {
+<<<<<<< HEAD
 	it('registerUser deberia ser una funcion', () => {
 		expect(typeof (registerUser)).toBe('function')
 	});
 	it('Deberia registrar un nuevo usuario', () => {
 		return registerUser('maga@wenergy.la', 'mg1234')
+=======
+	it('Deberia registrar un nuevo usuario', (done) => {
+		registerUser('maga@wenergy.la', 'mg1234')
+>>>>>>> e0716afc9e8a5fe5958c66041464c9e7e3468e61
 			.then((user) => {
 				expect(user.email).toEqual('maga@wenergy.la')
+				done();
 			})
 	})
 });
-
-// describe('Enviar Email de verificacion', () => {
-// 	it('checkEmail deberia ser una funcion', () => {
-// 		expect(typeof (checkEmail)).toBe('function')
-// 	})
-// });
 
 describe('Login de Usuarios', () => {
-	it('loginUser deberia ser una funcion', () => {
-		expect(typeof (loginUser)).toBe('function')
-	});
-	it('Deberia iniciar sesion', () => {
-		return loginUser('front@end.la', '123456')
+	it('Deberia iniciar sesion', (done) => {
+		loginUser('front@end.la', '123456')
 			.then((user) => {
 				expect(user.email).toEqual('front@end.la')
+				done();
 			})
-	})
-});
-
-describe('getUser', () => {
-	it('deberia retornar el correo del usuario que yo defina', () => {
-		loginUser('front@end.la', '123456')
-		.then(()=>{
-			const user= getUser();
-			expect(user.email).toEqual('front@end.la')
-		})
 	})
 });
 
@@ -69,11 +56,12 @@ describe('Login de Usuarios con Google', () => {
 	it('deberia ser una funcion', () => {
 		expect(typeof loginGoogle).toBe('function');
 	});
-	it('Deberia poder iniciar sesion con Google', () => {
-		firebase.auth().onAuthStateChanged((user) => {
-			expect(user.isAnonymous).toBe(false)
+	it('Deberia poder iniciar sesion con Google', (done) => {
+		loginGoogle()
+		.then((user) => {
+			expect(user.providerData[0].providerId).toBe('google.com')
+			done()
 		})
-		return loginGoogle();
 	})
 });
 
@@ -81,34 +69,48 @@ describe('Login de Usuarios con Facebook', () => {
 	it('debería ser una función', () => {
 		expect(typeof loginFacebook).toBe('function');
 	});
-	it('Debería poder iniciar sesion con Facebook', () => {
-		firebase.auth().onAuthStateChanged((user) => {
-			expect(user.isAnonymous).toBe(false)
+	it('Debería poder iniciar sesion con Facebook', (done) => {
+		loginFacebook()
+		.then((user) => {
+			expect(user.providerData[0].providerId).toBe('facebook.com')
+			done()
 		})
-		return loginFacebook();
 	})
 });
-
-// describe('Obtener usuario getUser', () => {
-// 	it('Deberia ser una funcion', () => {
-// 		expect(typeof (getUser)).toBe('function');
-// 	});
-// 	it('Deberia retornar usuario activo', (done) => {
-// 		getUser((user) => {
-// 			expect(user.isAnonymous).toBe('false')
-// 			done()
-// 		})
-// 	});
-// });
 
 describe('Cerrar sesion de usuario', () => {
 	it('Deberia ser una funcion', () => {
 		expect(typeof (exit)).toBe('function');
 	});
-	it('Deberia poder cerrar sesion', () => {
-		firebase.auth().onAuthStateChanged((user) => {
-			expect(user.isAnonymous).toBe(true)
+	it('Deberia poder cerrar sesion', (done) => {
+		exit()
+		.then((user) => {
+			expect(user).toBe(undefined)
+			done()
 		})
-		return exit();
 	})
 })
+
+describe ('activeUser', ()=>{
+	it('deberia de ver si el usuario esta activo', (done)=>{
+		const callback = (user) =>{
+			expect(user.email).toEqual('front@end.la')
+			done()
+		}
+		activeUser(callback);
+		loginUser('front@end.la', '123456');
+	})
+})
+
+describe('getUser', () => {
+	it('deberia retornar el correo del usuario que yo defina', (done) => {
+		loginUser('front@end.la', '123456')
+		.then(()=>{
+			const user= getUser();
+			expect(user.email).toEqual('front@end.la');
+			done();
+		})
+	})
+});
+
+

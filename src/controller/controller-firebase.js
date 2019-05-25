@@ -6,15 +6,13 @@ export const loginUser = (emailLogIn, passwordLogIn) => {
   return firebase.auth().signInWithEmailAndPassword(emailLogIn, passwordLogIn)
 };
 
-export const activeUser = (changeRoute) => {
-  return firebase.auth().onAuthStateChanged((user) => {
-    if (user) {
-      changeRoute('#/profile');
-    } else {
-      changeRoute('#/home');
-    }
-  });
-};
+export const db = ()=>{
+  return firebase.firestore();
+}
+
+// export const activeUser = (user) => {
+//   return firebase.auth().onAuthStateChanged(user)
+// };
 
 export const getUser = () => {
   return firebase.auth().currentUser;
@@ -30,12 +28,12 @@ export const loginFacebook = () => {
   return firebase.auth().signInWithPopup(provider)
 };
 
-export const unsuscribe = (showProfile) => {
-  return firebase.auth().onAuthStateChanged((u2) => {
+export const activeUser = (showProfile) => {
+  return firebase.auth().onAuthStateChanged((u2)=>{
     if (u2) {
       showProfile(u2)
     }
-  });
+  })
 }
 
 export const exit = () => {
@@ -79,16 +77,12 @@ export const likePost = (postId, counter) => {
 	})
 };
 
-export const savePostdb = (getName, textPost, modoPost) => {
-  const user = getUser();
-  getName(user)
-  .then((name) => {
-		firebase.firestore().collection('posts').add({
-			uid: user.uid,
+export const savePostdb = (uid, name, textPost, modoPost) => {
+		return firebase.firestore().collection('posts').add({
+			uid: uid,
 			name: name,
 			texto: textPost,
 			state: modoPost,
-			likes: 0,
+			likes: 0
 		})
-	})
 };
