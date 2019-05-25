@@ -25,16 +25,8 @@ import {
 import { loginInOnSubmit } from "../src/view-controller.js";
 
 describe('Registrar usuarios', () => {
-<<<<<<< HEAD
-	it('registerUser deberia ser una funcion', () => {
-		expect(typeof (registerUser)).toBe('function')
-	});
-	it('Deberia registrar un nuevo usuario', () => {
-		return registerUser('maga@wenergy.la', 'mg1234')
-=======
 	it('Deberia registrar un nuevo usuario', (done) => {
 		registerUser('maga@wenergy.la', 'mg1234')
->>>>>>> e0716afc9e8a5fe5958c66041464c9e7e3468e61
 			.then((user) => {
 				expect(user.email).toEqual('maga@wenergy.la')
 				done();

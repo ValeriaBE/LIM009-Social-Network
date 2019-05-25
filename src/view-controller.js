@@ -61,14 +61,9 @@ export const changeRoute = (route) => {
 export const savePost = () => {
 	let textPost = document.querySelector('#text-post').value;
 	let modoPost = document.querySelector('#visualización').value;
-<<<<<<< HEAD
-	savePostdb(getName, textPost, modoPost);
-}
-=======
 	const user = getUser();
 	getName(user)
 	.then((name) => {
 	savePostdb(user.uid, name, textPost, modoPost);
 	})
 }
->>>>>>> e0716afc9e8a5fe5958c66041464c9e7e3468e61
