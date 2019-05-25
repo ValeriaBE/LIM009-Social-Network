@@ -22,6 +22,7 @@ import {
 	exit,
 	activeUser
 } from "../src/controller/controller-firebase.js";
+import { loginInOnSubmit } from "../src/view-controller.js";
 
 describe('Registrar usuarios', () => {
 	it('Deberia registrar un nuevo usuario', (done) => {

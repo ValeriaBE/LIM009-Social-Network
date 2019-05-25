@@ -42,10 +42,10 @@ export const createPostScreen = (posts) => {
 }
 
 export const viewPostScreen = (objPosts) => {
-  const user = getUser()
-  const divContainer = document.createElement('div');
-  divContainer.innerHTML = '';
-  const templatesPosts = `
+	const user = getUser()
+	const divContainer = document.createElement('div');
+	divContainer.innerHTML = '';
+	const templatesPosts = `
     <div class="flex first-div-style">
       <p class="color-post publicado-name">Publicado por ${objPosts.name}</p>
       ${objPosts.uid === user.uid ? `<button class="color-post exit-btn border-none" padding-ten id="deleteBtn"><img class="color-post delete-img" src="img/delete.png" alt="" data-post-id="${objPosts.id}"/></button>` : ''}
