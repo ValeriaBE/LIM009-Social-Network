@@ -10,16 +10,12 @@ export const db = ()=>{
   return firebase.firestore();
 }
 
-// export const activeUser = (user) => {
-//   return firebase.auth().onAuthStateChanged(user)
-// };
-
 export const getUser = () => {
   return firebase.auth().currentUser;
 }
 
 export const loginGoogle = () => {
-  const provider = new firebase.auth.GoogleAuthProvider();
+	const provider = new firebase.auth.GoogleAuthProvider();
   return firebase.auth().signInWithPopup(provider)
 };
 
@@ -28,12 +24,8 @@ export const loginFacebook = () => {
   return firebase.auth().signInWithPopup(provider)
 };
 
-export const activeUser = (showProfile) => {
-  return firebase.auth().onAuthStateChanged((u2)=>{
-    if (u2) {
-      showProfile(u2)
-    }
-  })
+export const activeUser = (u2) => {
+  return firebase.auth().onAuthStateChanged((u2));
 }
 
 export const exit = () => {

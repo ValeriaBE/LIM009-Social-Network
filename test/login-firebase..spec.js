@@ -22,9 +22,12 @@ import {
 	exit,
 	activeUser
 } from "../src/controller/controller-firebase.js";
-import { loginInOnSubmit } from "../src/view-controller.js";
+
 
 describe('Registrar usuarios', () => {
+	it('registerUser deberia ser una funcion', () => {
+		expect(typeof (registerUser)).toBe('function')
+	});
 	it('Deberia registrar un nuevo usuario', (done) => {
 		registerUser('maga@wenergy.la', 'mg1234')
 			.then((user) => {
@@ -35,6 +38,9 @@ describe('Registrar usuarios', () => {
 });
 
 describe('Login de Usuarios', () => {
+	it('loginUser deberia ser una funcion', () => {
+		expect(typeof (loginUser)).toBe('function')
+	});
 	it('Deberia iniciar sesion', (done) => {
 		loginUser('front@end.la', '123456')
 			.then((user) => {

@@ -26,23 +26,14 @@ beforeEach(() => {
     global.firebase = new MockFirebase(fixtureData, { isNaiveSnapshotListenerEnabled: true });
 })
 
-/*const addFakePost = (firestore) => firestore.doc('posts/weft10').set({
-    uid: 'cftrix11',
-name: 'Lola',
-texto: 'hola',
-state: 'publico',
-likes: 0
-})*/
-
 // fxs a testear
 import {
 	viewPostdb,
 	deletePost,
 	updatePost,
 	likePost,
-	savePostdb,
+    savePostdb,
 } from "../src/controller/controller-firebase.js";
-
 
 describe('savePostdb', () => {
     it('deberia guardar un post', (done)=>{
@@ -76,4 +67,35 @@ describe('updatePost', ()=>{
         });
     })    
 
-describe('deletePost')
+describe('deletePost', ()=>{
+    it('deberia borrar un post', (done)=>{
+        deletePost('weft10')
+        .then(() => {
+            const data = (post) =>{
+                console.log(post)
+                const result = post.find((post)=> post.id=== 'weft10');
+                expect(result).toBe(undefined);
+                done()
+            }
+            viewPostdb(data);
+        })           
+
+    })
+})
+
+describe('likePost', ()=>{
+    //  beforeEach(() => addFakePost(firebase.firestore()))
+      it('deberia actualizar un post con los likes', (done)=>{
+              likePost('weft10', 2)
+              .then(() => {
+                  const data = (post) =>{
+                      console.log(post)
+                      const result = post.find((post)=> post.id=== 'weft10');
+                      expect(result.likes).toBe(2);
+                      done()
+                  }
+                  viewPostdb(data);
+              })           
+          });
+      })    
+  
