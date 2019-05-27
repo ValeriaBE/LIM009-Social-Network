@@ -32,7 +32,7 @@ export const showActUser = (user, posts) => {
               <p>${userCheck.email}<p>
           </div>
       </div>
-      <div id='box-of-posts' class="delete-img margin"></div>
+      <div id='box-of-posts' class="delete-img margin-top"></div>
     </section>`;
 
     divContainer.innerHTML = string;

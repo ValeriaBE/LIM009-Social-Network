@@ -172,7 +172,7 @@
 .post{
     padding: 9px;
     border-radius: 5px;
-    width: 80%;
+    width: 90%;
 }
 .post-input{
     height: 90px;
@@ -184,7 +184,7 @@
     margin-right: auto;
 }
 .background-color-img{
-    background-color: #14a3ab96;
+    background-color: #14a3abcc;
 }
 .select{
     margin-left: auto;
@@ -225,7 +225,7 @@
 }
 .first-div-style{
     color: white;
-    background-color: #14a3ab96;
+    background-color: #00A8B1;
     padding: 10px;
     align-items: center;
 }

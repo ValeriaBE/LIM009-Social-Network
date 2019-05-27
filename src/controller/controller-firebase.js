@@ -25,7 +25,7 @@ export const loginFacebook = () => {
 };
 
 export const activeUser = (u2) => {
-  return firebase.auth().onAuthStateChanged((u2));
+	return firebase.auth().onAuthStateChanged((u2));
 }
 
 export const exit = () => {

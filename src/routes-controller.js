@@ -64,7 +64,7 @@ const viewTmp = (routers) => {
           if(u){
             showProfile(u)
           }
-          activeUser()
+          // activeUser()
       }
       break;
     }
