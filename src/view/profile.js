@@ -12,10 +12,10 @@ export const showActUser = (user, posts) => {
   const userCheck = user;
   let string = `
     <header class="header-profile back-color center flex text-color">
-        <div class="dropdown border-none text-color back-color">
+        <div class="dropdown margin-right-auto border-none text-color back-color">
             <img class="menu-button back-color" src="img/menu.png" alt="">
             <div class="dropdown-content position">
-            <a class="dropdown-links text-color block" href="#/home" id="exit">Cerrar Sesión</a>
+            <a class="dropdown-links font-size text-color block" href="#/home" id="exit">Cerrar Sesión</a>
             </div>
         </div>
         <div class="position">
@@ -27,7 +27,7 @@ export const showActUser = (user, posts) => {
           <figure class="photo-box inline-block">
               <img class="img-user"src="${userCheck.photoURL == null ? 'img/No-Photo-Available.jpg': userCheck.photoURL}" alt="foto">
           </figure>
-          <div class="name-user name-color inline-block">
+          <div class="name-user font-size name-color inline-block">
               <p id="userName">${userCheck.displayName || userCheck.name}</p>
               <p>${userCheck.email}<p>
           </div>

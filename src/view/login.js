@@ -20,7 +20,7 @@ export const screen1 = () => {
       <form id="login-user" class="margin">
         <input class="inputs block" type="email" name="correo" id="email-login" placeholder="Email">
         <input class="inputs block" type="password" name="contraseña" id="password-login"  placeholder="Password">
-        <a class="buttons block color2 text-color" id="login-btn" >Log in</a>
+        <a class="font-size buttons block color2 text-color" id="login-btn" >Log in</a>
         <div>
           <p class="margin text-color">O bien ingresa con...</p>
           <a id="fb"><img class="social-media-img" src ='img/fb.svg'></img></a>

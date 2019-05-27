@@ -13,7 +13,7 @@ export const createPostScreen = (posts) => {
   divContainer.innerHTML = '';
   const register =
     `<div class="container-post post post-border flex flex-column main-img auto">
-        <select class="border-none inline-block select background-color-img" name="" id="visualización">
+        <select class="border-none inline-block select font-size background-color-img" name="" id="visualización">
             <option value="modo">Visualización</option>    
             <option value="privado">Privado</option>
             <option value="publico">Público</option>
@@ -46,12 +46,12 @@ export const viewPostScreen = (objPosts) => {
 	const divContainer = document.createElement('div');
 	divContainer.innerHTML = '';
 	const templatesPosts = `
-    <div class="flex first-div-style">
-      <p class="color-post publicado-name">Publicado por ${objPosts.name}</p>
+    <div class="flex first-div-style padding-ten">
+      <p class="color-post padding-ten margin-right-auto font-size">Publicado por ${objPosts.name}</p>
       ${objPosts.uid === user.uid ? `<button class="color-post exit-btn border-none" padding-ten id="deleteBtn"><img class="color-post delete-img" src="img/delete.png" alt="" data-post-id="${objPosts.id}"/></button>` : ''}
     </div>
     <div id="editText">
-      <p class="padding-ten">${objPosts.texto}</p>
+      <p class="padding-ten font-size">${objPosts.texto}</p>
     </div>
     <div class="padding-ten container-post">
       <span id="counterLike">${objPosts.likes}</span>
@@ -61,7 +61,7 @@ export const viewPostScreen = (objPosts) => {
     </div>`;
 
   divContainer.innerHTML += templatesPosts;
-  divContainer.classList.add('container2', 'published-post', 'post-border');
+  divContainer.classList.add('container2', 'published-post', 'flex', 'flex-column', 'post-border');
   const deleteBtn = divContainer.querySelector('#deleteBtn');
 
   if (deleteBtn) {
@@ -103,9 +103,9 @@ export const viewPostScreen = (objPosts) => {
         select.setAttribute('id', 'modo');
         submit.setAttribute('id', 'submitEdit');
 
-        guardar.classList.add('editTextBox');
+        guardar.classList.add('editTextBox','flex','flex-column');
         newElement.classList.add('main-img', 'auto');
-        submit.classList.add('margin-top', 'auto', 'buttons', 'block', 'color2', 'text-color');
+        submit.classList.add('margin-top', 'auto', 'font-size', 'buttons', 'block', 'color2', 'text-color');
         submit.classList.add('margin-top', 'auto', 'bottom');
 
         let btnTarget = evt.target;
