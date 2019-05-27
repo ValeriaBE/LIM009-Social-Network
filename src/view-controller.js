@@ -64,6 +64,6 @@ export const savePost = () => {
 	const user = getUser();
 	getName(user)
 	.then((name) => {
-	savePostdb(user.uid, name, textPost, modoPost);
+	savePostdb(user.uid, name, textPost, modoPost, new Date());
 	})
 }

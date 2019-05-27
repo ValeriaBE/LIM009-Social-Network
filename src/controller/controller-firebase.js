@@ -40,7 +40,7 @@ export const createUser = (cred) => {
 }
 
 export const viewPostdb = (callback) => {
-	firebase.firestore().collection("posts").onSnapshot((querySnapshot) => {
+	firebase.firestore().collection("posts").orderBy('date', 'desc').onSnapshot((querySnapshot) => {
 		const data = [];
 		querySnapshot.forEach((doc) => {
 			data.push({
@@ -69,12 +69,14 @@ export const likePost = (postId, counter) => {
 	})
 };
 
-export const savePostdb = (uid, name, textPost, modoPost) => {
+export const savePostdb = (uid, name, textPost, modoPost, date) => {
 		return firebase.firestore().collection('posts').add({
 			uid: uid,
 			name: name,
 			texto: textPost,
 			state: modoPost,
+			date: date,
 			likes: 0
 		})
 };
+

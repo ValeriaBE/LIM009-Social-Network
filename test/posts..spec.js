@@ -17,6 +17,7 @@ beforeEach(() => {
                         name: 'Lola',
                         texto: 'hola',
                         state: 'publico',
+                        date:'27/5/2019, 5:59:10 PM',
                         likes: 0
                     }
                 }
@@ -37,7 +38,7 @@ import {
 
 describe('savePostdb', () => {
     it('deberia guardar un post', (done)=>{
-        savePostdb('qa123h', 'Maria Lopez', 'hola mundo', 'publico')
+        savePostdb('qa123h', 'Maria Lopez', 'hola mundo', 'publico', '25/5/2019, 4:30:02 PM')
             .then(() => {
                 const data = (post)=>{
                     console.log(data)
