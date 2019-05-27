@@ -57,7 +57,6 @@ export const viewPostScreen = (objPosts) => {
       <span id="counterLike">${objPosts.likes}</span>
       <button class="border-none container-post delete-btn" id="likeBtn"><img class="color-post delete-img" src="img/like.png" alt="" data-post-id="${objPosts.id}"/></button>
       ${objPosts.uid === user.uid ? `<button class="border-none container-post delete-btn" id="editBtn"><img class="color-post delete-img" src="img/edit.png" alt="pencil-editar" data-post-id="${objPosts.id}" data-post-text="${objPosts.texto}" data-post-mode ="${objPosts.state}"/></button>` : '' }
-      <button class="border-none container-post delete-btn" id="commentBtn"><img class="color-post delete-img" src="img/chat.png" data-post-id="${objPosts.id}" alt="pencil-editar"/></button>
     </div>`;
 
   divContainer.innerHTML += templatesPosts;
